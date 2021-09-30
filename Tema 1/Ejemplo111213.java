@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Ejemplo111213 {
     public static void main(String[] args) {        
         Scanner llig = new Scanner(System.in);
-        System.out.println("Introduix quants numeros vols ordenar: ");
+        System.out.println("Introduix la quantitat de números amb els que vols treballar: ");
         float[] nums = new float[llig.nextInt()];
         
         for(byte i = 0; i < nums.length; i++){
@@ -12,8 +12,9 @@ public class Ejemplo111213 {
             nums[i] = llig.nextFloat();
             System.out.println("(" + (i + 1) + "/" + nums.length + ")\n");
         }
-
         Arrays.sort(nums);
+
+        //while MHE KEDAT ACÍ
 
         System.out.println("Què vols fer amb els números?\n1 --> Ordenar de forma ascendent.\n2 --> Ordenar de forma descendent.\n3 --> Mostrar valor més gran.");
 
