@@ -8,7 +8,7 @@ public class Ejemplo11 {
         float[] nums = new float[llig.nextInt()];
         
         for(byte i = 0; i < nums.length; i++){
-            System.out.println("Introduix el numero: ");
+            System.out.println("Introduix un numero: ");
             nums[i] = llig.nextFloat();
             System.out.println("(" + (i + 1) + "/" + nums.length + ")\n");
         }
