@@ -10,6 +10,7 @@ public class Ejemplo19 {
         eurosh = llig.nextByte();
         System.out.println("Introduix les hores:");
         hores = llig.nextByte();
+        llig.close();
 
         if (hores > 35) {
             pagoBrut = 35*eurosh + (float)1.5*eurosh*(hores - 35);  
@@ -20,8 +21,13 @@ public class Ejemplo19 {
         if (pagoBrut > 900) {
             impostos = 400*(float).25 + (pagoBrut - 900)*(float).45;
         } else if (pagoBrut > 500) {
-            impostos = pagoBrut;
+            impostos = (pagoBrut - 500)*(float).25;
+        } else {
+            impostos = 0;
         }
+
+        souNet = pagoBrut - impostos;
+        System.out.println("Sou net: " + souNet + "euros\nSou brut: " + pagoBrut + "euros\nImpostos: " + impostos + "euros");
 
     }
 }
