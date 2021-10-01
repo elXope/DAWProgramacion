@@ -6,6 +6,7 @@ public class Ejemplo6 {
 
         System.out.println("Escriu el radi (m): ");
         final double radi = llig.nextFloat();
+        llig.close();
 
         final double perimetre = 2*Math.PI*radi;
         final double area = Math.PI*Math.pow(radi, 2);

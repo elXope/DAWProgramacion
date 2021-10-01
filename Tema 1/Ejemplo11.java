@@ -12,6 +12,7 @@ public class Ejemplo11 {
             nums[i] = llig.nextFloat();
             System.out.println("(" + (i + 1) + "/" + nums.length + ")\n");
         }
+        llig.close();
 
         Arrays.sort(nums);
 

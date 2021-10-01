@@ -9,6 +9,7 @@ public class Ejemplo5 {
 
         System.out.println("Introduix el segon numero: ");
         float y = llig.nextFloat();
+        llig.close();
         
         System.out.println("La suma dona " + (x + y) + ", la resta " + (x - y) + ", la multiplicació " + (x * y) + " i la divisió " + (x/y) + ".");
     }    

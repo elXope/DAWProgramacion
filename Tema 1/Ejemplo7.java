@@ -20,7 +20,7 @@ public class Ejemplo7 {
                 incorrecte = false;
             }
         }
-
+        llig.close();
         final float rebaixa = (preu - preuRebaixat)/preu * 100;
         System.out.println("La rebaixa és del " + rebaixa + "%.");
     }

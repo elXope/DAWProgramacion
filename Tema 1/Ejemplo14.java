@@ -32,7 +32,6 @@ public class Ejemplo14 {
                 seguir = false;
             }
         }
-        
-
+        llig.close();
     }
 }

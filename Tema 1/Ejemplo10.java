@@ -6,6 +6,7 @@ public class Ejemplo10 {
 
         System.out.println("Introduix un número: ");
         final float num = llig.nextFloat();
+        llig.close();
 
         if(num < 0){
             System.out.println("El número introduït és negatiu.");

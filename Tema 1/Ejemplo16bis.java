@@ -12,6 +12,7 @@ public class Ejemplo16bis {
         num1 = llig.nextDouble();
         System.out.println("Introduix el segon número: ");
         num2 = llig.nextDouble();
+        llig.close();
 
         if(operacio.contains("+")){
             System.out.println(num1 + num2);

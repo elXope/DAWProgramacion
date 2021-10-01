@@ -51,6 +51,7 @@ public class Ejemplo111213 {
                     break;
             }
         }
+        llig.close();
         System.out.println("Programa finalitzat.");
 
     }
