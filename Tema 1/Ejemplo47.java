@@ -1,7 +1,7 @@
 import java.util.Scanner;
 // import java.lang.String;
 
-public class Ejemplo27 {
+public class Ejemplo47 {
     public static void main(String[] args) {
         Scanner llig = new Scanner(System.in);
         System.out.println("Introduix una frase: ");
