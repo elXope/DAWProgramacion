@@ -7,9 +7,9 @@ public class Ejemplo19 {
         float pagoBrut, souNet, impostos;
 
         System.out.println("Introduix els euros/hora:");
-        eurosh = llig.nextByte();
+        eurosh = llig.nextShort();
         System.out.println("Introduix les hores:");
-        hores = llig.nextByte();
+        hores = llig.nextShort();
         llig.close();
 
         if (hores > 35) {
