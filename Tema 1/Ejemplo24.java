@@ -19,6 +19,8 @@ public class Ejemplo24 {
             grade = llig.nextFloat();
         }
 
+        llig.close();
+
         System.out.println("Average: " + (sum/i));
 
         if (wasTen){
