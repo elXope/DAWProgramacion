@@ -8,4 +8,5 @@ public class provetes {
         System.out.println(circo.nPortes);
         System.out.println(circo.llistaPortes[0].ixida(false, true));
     }
+    //prova
 }
