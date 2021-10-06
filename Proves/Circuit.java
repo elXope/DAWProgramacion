@@ -14,14 +14,14 @@ public class Circuit {
     
     // Principal métode del circuit, dóna la solució
     public void taulaVeritat(){
-        //totes les combinacions de inputs
+        //INPUTS
         boolean[][] input = inputComb();
-        
         int contEstats = 0; //per a vore en quin estat dels inputs està ja que mhe posat fancy i he fet el bucle sense index
-        this.solucio = new boolean[this.nInputs][input.length]; //Inicialitzem la solució. Per ara guarda tots els outputs de totes les portes.
         
-        //1a col: true si hi ha output. 2a el output. quan se crea per default posa un "false".
-        boolean[][] output = new boolean[this.nInputs + this.nPortes][2];
+        //OUTPUTS
+        this.solucio = new boolean[this.nInputs][input.length]; //Inicialitzem la solució. Per ara guardarà tots els outputs de totes les portes.
+        
+        boolean[][] output = new boolean[this.nInputs + this.nPortes][2]; //1a col: true si hi ha output. 2a el output. quan se crea per default posa un "false".
         output[0][0] = true; //els inputs sempre tenen "output"
         output[1][0] = true;
         output[2][0] = true;        
