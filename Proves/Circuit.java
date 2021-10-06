@@ -1,32 +1,23 @@
 import java.util.Random;
 
 public class Circuit {
-    Porta[] llistaPortes;
-    byte nPortes;
-    byte[][] indexConnect; // input 1, input 2
-    boolean a;
-    boolean b;
-    boolean c;
-    byte nInputs = 3;
-    boolean[][] solucio;
+    Porta[] llistaPortes; //vector amb totes les portes
+    byte nPortes; //número de portes
+    byte[][] indexConnect; // el índex de la porta en la llista de outputs (si tenim 3 inputs la primera porta serà el ind 3)
+    byte nInputs = 3; //numero de inputs. Per ara use tres sempre.
+    boolean[][] solucio; //serà la matriu on se guardaran les solucions del circuit, és a dir, la solucio de la taula de la veritat per a les portes en les que el output no està connectat a res.
 
-    Circuit(Porta[] llistaPortes){
-        this.llistaPortes = llistaPortes;
-        this.nPortes = (byte)llistaPortes.length;
-    }
-
-    Circuit(int nPortes){
-        this.nPortes = (byte)nPortes;
-    }
-
+    // CONSTRUCTOR se necessiten les portes i com estan connectades. Hauré de fer un constructor per a circuits aleatoris o una classe que me cree els inputs aleatòriament.
     Circuit(Porta[] llistaPortes, byte[][] indexConnect){
         this.llistaPortes = llistaPortes;
         this.nPortes = (byte)llistaPortes.length;
         this.indexConnect = indexConnect;
     }
-
+    
+    // Principal métode del circuit, dóna la solució
     public void taulaVeritat(){
-        boolean[][] input = new boolean[8][3];
+        //totes les combinacions de inputs
+        boolean[][] input = new boolean[8][3]; 
         input[0][0] = false;
         input[0][1] = false;
         input[0][2] = false;
@@ -50,31 +41,42 @@ public class Circuit {
         input[6][2] = false;
         input[7][0] = true;
         input[7][1] = true;
-        input[7][2] = true;    
+        input[7][2] = true;  
         
-        boolean[][] output = new boolean[this.nInputs + this.nPortes][2]; //1a col: true si hi ha output. 2a el output.
-        output[0][0] = true;
+        int contEstats = 0; //per a vore en quin estat dels inputs està ja que mhe posat fancy i he fet el bucle sense index
+        this.solucio = new boolean[this.nInputs][input.length]; //Inicialitzem la solució. Per ara guarda tots els outputs de totes les portes.
+        
+        //1a col: true si hi ha output. 2a el output. quan se crea per default posa un "false".
+        boolean[][] output = new boolean[this.nInputs + this.nPortes][2];
+        output[0][0] = true; //els inputs sempre tenen "output"
         output[1][0] = true;
         output[2][0] = true;        
-
-        int contEstats = 0;
-        this.solucio = new boolean[this.nInputs][input.length];
-        for(boolean[] estats : input){ //canviar inputs OJOOOOOOOO CONCORDAR EN LO DE DALT
+        
+        /*
+        Bucles on s'executa la part principal i més llarga del codi.
+        Primer bucle: recorre tota la taula d'estats dels inputs.
+        Segon bucle: per a cada estat se busca el output de totes les portes. La funció recursiva actua des d'una porta
+            cap als inputs. En el plantejament del programa s'establix que qualsevol porta amb un output que no estiga connectat a res,
+            se considerarà output del sistema.
+        Tercer bucle: per a cada estat se guarden els outputs de totes les portes en la variable de circuit "solucio".
+        */
+        for(boolean[] estats : input){ 
+            // assignem als estats dels inputs
             output[0][1] = estats[0];
             output[1][1] = estats[1];
             output[2][1] = estats[2];
 
-            for (int i = 1; i <= this.indexConnect.length; i++){
-                output = solucioFrac(this.indexConnect[this.indexConnect.length-i], output);
+            for (int i = this.indexConnect.length - 1; i >= 0; i--){
+                output = solucioFrac(this.indexConnect[i], output);
             }
-            for (int i = 0; i < this.solucio.length; i++){
+
+            for (byte i = 0; i < this.solucio.length; i++){
                 this.solucio[i][contEstats] = output[i+3][1];
             }
-            /*for (int i = this.nPortes - 1; i >= 0; i--){
-
-            }*/
             contEstats++;
         }
+
+        // Per a imprimir les ixides per pantalla
         for(int i = 0; i < solucio.length; i++){
             for(int j = 0; j < solucio[0].length; j++){
                 System.out.print(solucio[i][j] + " ");
@@ -83,10 +85,11 @@ public class Circuit {
         }
     }
 
-    private boolean[][] solucioFrac(byte[] conexio, boolean[][] output){   //Una fila de indexConnect
-        if (!output[conexio[0]][0]){   //si NO té solució, HI HA UN NOT
+    // Increible funció recursiva per a trobar els outputs de totes les portes
+    private boolean[][] solucioFrac(byte[] conexio, boolean[][] output){   //1r arg: una fila de indexConnect. 2n arg: el output.
+        if (!output[conexio[0]][0]){   //si NO té solució entra en el if. HI HA UN NOT!!
             if(!output[conexio[1]][0]){
-                output = solucioFrac(this.indexConnect[conexio[1]-3], output);  //igual hem de fer que retorne output
+                output = solucioFrac(this.indexConnect[conexio[1]-3], output);
                 if(!output[conexio[2]][0]){
                     output = solucioFrac(this.indexConnect[conexio[2]-3], output);
                 }
@@ -97,15 +100,4 @@ public class Circuit {
             return output;
         }
     }
-    
-    /*public void inicialitza(){
-        this.indexConnect = new byte[this.nPortes][3];
-        Random rand = new Random();
-
-        for (byte i = 0; i < this.nPortes; i++){
-            this.llistaPortes[i] = new Porta(rand.nextInt(3));
-            this.indexConnect[0][i] = i;
-            // POSE LES CONNEXIONS JA AMB LO ALTRE. FALTARIA COM DECIDIR SI A, B O C O TOTES LES ANTERIORS.
-        }
-    }*/
 }
