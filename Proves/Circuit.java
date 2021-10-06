@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class Circuit {
     Porta[] llistaPortes; //vector amb totes les portes
     byte nPortes; //número de portes
@@ -17,31 +15,7 @@ public class Circuit {
     // Principal métode del circuit, dóna la solució
     public void taulaVeritat(){
         //totes les combinacions de inputs
-        boolean[][] input = new boolean[8][3]; 
-        input[0][0] = false;
-        input[0][1] = false;
-        input[0][2] = false;
-        input[1][0] = false;
-        input[1][1] = false;
-        input[1][2] = true;
-        input[2][0] = false;
-        input[2][1] = true;
-        input[2][2] = false;
-        input[3][0] = false;
-        input[3][1] = true;
-        input[3][2] = true;
-        input[4][0] = true;
-        input[4][1] = false;
-        input[4][2] = false;
-        input[5][0] = true;
-        input[5][1] = false;
-        input[5][2] = true;
-        input[6][0] = true;
-        input[6][1] = true;
-        input[6][2] = false;
-        input[7][0] = true;
-        input[7][1] = true;
-        input[7][2] = true;  
+        boolean[][] input = inputComb();
         
         int contEstats = 0; //per a vore en quin estat dels inputs està ja que mhe posat fancy i he fet el bucle sense index
         this.solucio = new boolean[this.nInputs][input.length]; //Inicialitzem la solució. Per ara guarda tots els outputs de totes les portes.
@@ -99,5 +73,35 @@ public class Circuit {
         } else{
             return output;
         }
+    }
+
+    // Ara no té arguments però vull arribar a posar el nº d inputs com a argument de Circuit.
+    private boolean[][] inputComb(){
+        boolean[][] input = new boolean[8][3]; 
+        input[0][0] = false;
+        input[0][1] = false;
+        input[0][2] = false;
+        input[1][0] = false;
+        input[1][1] = false;
+        input[1][2] = true;
+        input[2][0] = false;
+        input[2][1] = true;
+        input[2][2] = false;
+        input[3][0] = false;
+        input[3][1] = true;
+        input[3][2] = true;
+        input[4][0] = true;
+        input[4][1] = false;
+        input[4][2] = false;
+        input[5][0] = true;
+        input[5][1] = false;
+        input[5][2] = true;
+        input[6][0] = true;
+        input[6][1] = true;
+        input[6][2] = false;
+        input[7][0] = true;
+        input[7][1] = true;
+        input[7][2] = true;
+        return input;
     }
 }
