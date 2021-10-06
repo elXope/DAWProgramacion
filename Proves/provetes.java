@@ -4,10 +4,6 @@ public class provetes {
         llista[0] = new Porta(0);
         llista[1] = new Porta(0);
         llista[2] = new Porta(0);
-        //Circuit circo = new Circuit(llista);
-        //System.out.println(circo.nPortes);
-        //System.out.println(circo.llistaPortes[0].ixida(false, true));
-
 
         byte[][] plantilla = new byte[3][3];
         plantilla[0][0] = 3;
@@ -22,6 +18,7 @@ public class provetes {
 
         Circuit circo = new Circuit(llista, plantilla);
         circo.taulaVeritat();
+        System.out.println(circo.indexIxides);
 
 
     }

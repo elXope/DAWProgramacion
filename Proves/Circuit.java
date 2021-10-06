@@ -1,15 +1,19 @@
+import java.util.ArrayList;
+
 public class Circuit {
     Porta[] llistaPortes; //vector amb totes les portes
     byte nPortes; //número de portes
     byte[][] indexConnect; // el índex de la porta en la llista de outputs (si tenim 3 inputs la primera porta serà el ind 3)
     byte nInputs = 3; //numero de inputs. Per ara use tres sempre.
     boolean[][] solucio; //serà la matriu on se guardaran les solucions del circuit, és a dir, la solucio de la taula de la veritat per a les portes en les que el output no està connectat a res.
+    int[] indexIxides; //índex de les ixides de un sistema
 
     // CONSTRUCTOR se necessiten les portes i com estan connectades. Hauré de fer un constructor per a circuits aleatoris o una classe que me cree els inputs aleatòriament.
     Circuit(Porta[] llistaPortes, byte[][] indexConnect){
         this.llistaPortes = llistaPortes;
         this.nPortes = (byte)llistaPortes.length;
         this.indexConnect = indexConnect;
+        indIx();
     }
     
     // Principal métode del circuit, dóna la solució
@@ -72,6 +76,30 @@ public class Circuit {
             return output;
         } else{
             return output;
+        }
+    }
+
+    private void indIx(){
+        ArrayList<Integer> indexProv = new ArrayList<Integer>();
+        boolean esIxida;
+        for(int i = 0; i < this.indexConnect.length - 1; i++){
+            esIxida = false;
+            for(int j = i+1; j < this.indexConnect.length; j++){
+                for(int k = 1; k < 3; k++){
+                    if(this.indexConnect[i][0] == this.indexConnect[j][k]){
+                        esIxida = true;
+                        break;
+                    }
+                }
+                if(esIxida){
+                    indexProv.add(j);
+                    break;
+                }
+            }
+        }
+        this.indexIxides = new int[indexProv.size()];
+        for(int i = 0; i < indexProv.size(); i++){
+            this.indexIxides[i] = indexProv.get(i).intValue();
         }
     }
 
