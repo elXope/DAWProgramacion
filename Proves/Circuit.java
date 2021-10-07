@@ -81,22 +81,20 @@ public class Circuit {
 
     private void indIx(){
         ArrayList<Integer> indexProv = new ArrayList<Integer>();
-        boolean esIxida;
+        boolean noEsInd;
         for(int i = 0; i < this.indexConnect.length - 1; i++){
-            esIxida = false;
+            noEsInd = false;
             for(int j = i+1; j < this.indexConnect.length; j++){
-                for(int k = 1; k < 3; k++){
-                    if(this.indexConnect[i][0] == this.indexConnect[j][k]){
-                        esIxida = true;
-                        break;
-                    }
-                }
-                if(esIxida){
-                    indexProv.add(j);
+                if(this.indexConnect[i][0] == this.indexConnect[j][1] || this.indexConnect[i][0] == this.indexConnect[j][2]){
+                    noEsInd = true;
                     break;
                 }
             }
+            if(!noEsInd){
+                indexProv.add(i);
+            }
         }
+        indexProv.add(this.indexConnect.length - 1);
         this.indexIxides = new int[indexProv.size()];
         for(int i = 0; i < indexProv.size(); i++){
             this.indexIxides[i] = indexProv.get(i).intValue();

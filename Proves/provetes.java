@@ -18,7 +18,7 @@ public class provetes {
 
         Circuit circo = new Circuit(llista, plantilla);
         circo.taulaVeritat();
-        System.out.println(circo.indexIxides);
+        System.out.println(circo.indexIxides[0]);
 
 
     }
