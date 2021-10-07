@@ -23,7 +23,7 @@ public class Circuit {
         int contEstats = 0; //per a vore en quin estat dels inputs està ja que mhe posat fancy i he fet el bucle sense index
         
         //OUTPUTS
-        this.solucio = new boolean[this.nInputs][input.length]; //Inicialitzem la solució. Per ara guardarà tots els outputs de totes les portes.
+        this.solucio = new boolean[this.nPortes][input.length]; //Inicialitzem la solució. Per ara guardarà tots els outputs de totes les portes.
         
         boolean[][] output = new boolean[this.nInputs + this.nPortes][2]; //1a col: true si hi ha output. 2a el output. quan se crea per default posa un "false".
         output[0][0] = true; //els inputs sempre tenen "output"
@@ -79,6 +79,7 @@ public class Circuit {
         }
     }
 
+    //Per a trobar els index de les ixides del sistema
     private void indIx(){
         ArrayList<Integer> indexProv = new ArrayList<Integer>();
         boolean noEsInd;
