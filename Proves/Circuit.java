@@ -56,10 +56,16 @@ public class Circuit {
 
         // Per a imprimir les ixides per pantalla
         for(int i = 0; i < solucio.length; i++){
-            for(int j = 0; j < solucio[0].length; j++){
-                System.out.print(solucio[i][j] + " ");
+            for(int k = 0; k < this.indexIxides.length; k++){
+                if(this.indexIxides[k] == i){
+                    for(int j = 0; j < solucio[0].length; j++){
+                        System.out.print(solucio[i][j] + " ");
+                        if(j == solucio[0].length - 1){
+                            System.out.print("\n");
+                        }
+                    }
+                }
             }
-            System.out.print("\n");
         }
     }
 
