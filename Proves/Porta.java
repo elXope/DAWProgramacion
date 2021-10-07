@@ -34,6 +34,9 @@ public class Porta {
             case 2:
                 return !a;
 
+            case 3: 
+                return a ^ b;
+
             default:
                 System.out.println("Hi ha un error en el metode tria de Porta");
                 return false;  
