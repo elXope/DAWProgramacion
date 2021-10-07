@@ -26,10 +26,10 @@ public class Porta {
         // triar 0, 1 o 2 per a fer AND, OR o NOT
         switch (this.tipo){
             case 0:
-                return a && b;
+                return a & b;
 
             case 1:
-                return a || b;
+                return a | b;
 
             case 2:
                 return !a;
