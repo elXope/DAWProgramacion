@@ -44,10 +44,10 @@ public class Circuit {
             output[1][1] = estats[1];
             output[2][1] = estats[2];
 
-            for (int i = this.indexConnect.length - 1; i >= 0; i--){
+            for (int i : this.indexIxides){
                 output = solucioFrac(this.indexConnect[i], output);
             }
-
+            
             for (byte i = 0; i < this.solucio.length; i++){
                 this.solucio[i][contEstats] = output[i+3][1];
             }
@@ -74,9 +74,9 @@ public class Circuit {
         if (!output[conexio[0]][0]){   //si NO té solució entra en el if. HI HA UN NOT!!
             if(!output[conexio[1]][0]){
                 output = solucioFrac(this.indexConnect[conexio[1]-3], output);
-                if(!output[conexio[2]][0]){
-                    output = solucioFrac(this.indexConnect[conexio[2]-3], output);
-                }
+            }
+            if(!output[conexio[2]][0]){
+                output = solucioFrac(this.indexConnect[conexio[2]-3], output);
             }
             output[conexio[0]][1] = this.llistaPortes[conexio[0]-3].ixida(output[conexio[1]][1], output[conexio[2]][1]);
             return output;
