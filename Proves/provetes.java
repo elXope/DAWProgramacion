@@ -1,9 +1,16 @@
 public class provetes {
     public static void main(String[] args) {
-        Circuit circo = new Circuit(20);
+        Circuit circo = new Circuit(5);
         circo.taulaVeritat();
         circo.display();
-        
+
+        for(int i = 0; i < circo.indexConnect.length; i++){
+            System.out.println(circo.indexConnect[i][1] + " " + circo.indexConnect[i][2]);
+        }
+        for(int i = 0; i < circo.llistaPortes.length; i++){
+            System.out.println(circo.llistaPortes[i].tipo);
+        }
+
         /*CIRCUIT FULL ADDER
         Porta[] llista = new Porta[13];
         llista[0] = new Porta(0);

@@ -147,10 +147,15 @@ public class Circuit {
         this.indexConnect = new byte[nPortes][3];
         Random rand = new Random();
         for (int i = 0; i < nPortes; i++){
-            this.llistaPortes[i].tipo = (byte)rand.nextInt(3);
+            this.llistaPortes[i] = new Porta(rand.nextInt(3));
             this.indexConnect[i][0] = (byte)(i + 3);
             this.indexConnect[i][1] = (byte)rand.nextInt(i+3);
-            this.indexConnect[i][2] = (byte)rand.nextInt(i+3);
+            if(this.llistaPortes[i].tipo == 2){
+                this.indexConnect[i][2] = this.indexConnect[i][1];
+            }else{
+                this.indexConnect[i][2] = (byte)rand.nextInt(i+3);
+            }
         }
+        indIx();
     }
 }
