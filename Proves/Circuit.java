@@ -23,8 +23,9 @@ public class Circuit {
         int contEstats = 0; //per a vore en quin estat dels inputs està ja que mhe posat fancy i he fet el bucle sense index
         
         //OUTPUTS
-        this.solucio = new boolean[this.nPortes][input.length]; //Inicialitzem la solució. Per ara guardarà tots els outputs de totes les portes.
-        
+        this.solucio = new boolean[this.indexIxides.length][input.length]; //Inicialitzem la solució. Per ara guardarà tots els outputs de totes les portes.
+        int contSolucions = 0;
+
         boolean[][] output = new boolean[this.nInputs + this.nPortes][2]; //1a col: true si hi ha output. 2a el output. quan se crea per default posa un "false".
         output[0][0] = true; //els inputs sempre tenen "output"
         output[1][0] = true;
@@ -44,28 +45,14 @@ public class Circuit {
             output[1][1] = estats[1];
             output[2][1] = estats[2];
 
+            contSolucions = 0;
             for (int i : this.indexIxides){
                 output = solucioFrac(this.indexConnect[i], output);
+                this.solucio[contSolucions][contEstats] = output[i+3][1];
+                contSolucions++;
             }
-            
-            for (byte i = 0; i < this.solucio.length; i++){
-                this.solucio[i][contEstats] = output[i+3][1];
-            }
-            contEstats++;
-        }
 
-        // Per a imprimir les ixides per pantalla
-        for(int i = 0; i < solucio.length; i++){
-            //for(int k = 0; k < this.indexIxides.length; k++){
-                //if(this.indexIxides[k] == i){
-                    for(int j = 0; j < solucio[0].length; j++){
-                        System.out.print(solucio[i][j] + " ");
-                        if(j == solucio[0].length - 1){
-                            System.out.print("\n");
-                        }
-                    }
-                //}
-            //}
+            contEstats++;
         }
     }
 
@@ -105,6 +92,28 @@ public class Circuit {
         this.indexIxides = new int[indexProv.size()];
         for(int i = 0; i < indexProv.size(); i++){
             this.indexIxides[i] = indexProv.get(i).intValue();
+        }
+    }
+
+    public void display(){
+        // Per a imprimir les ixides per pantalla
+        for(boolean[] i : this.solucio){
+            for(boolean j : i){
+                System.out.print(j + " ");
+            }
+            System.out.print("\n");
+        }
+        for(int i = 0; i < this.solucio.length; i++){
+            for(int k = 0; k < this.indexIxides.length; k++){
+                if(this.indexIxides[k] == i){
+                    for(int j = 0; j < this.solucio[0].length; j++){
+                        System.out.print(this.solucio[i][j] + " ");
+                        if(j == this.solucio[0].length - 1){
+                            System.out.print("\n");
+                        }
+                    }
+                }
+            }
         }
     }
 

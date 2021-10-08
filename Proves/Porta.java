@@ -10,26 +10,14 @@ public class Porta {
         this.tipo = (byte)tipo;
     }
 
-    public boolean and(boolean a, boolean b){
-        return a && b;
-    }
-
-    public boolean or(boolean a, boolean b){
-        return a || b;
-    }
-
-    public boolean not(boolean a){
-        return !a;
-    }
-
     public boolean ixida(boolean a, boolean b){
         // triar 0, 1 o 2 per a fer AND, OR o NOT
         switch (this.tipo){
             case 0:
-                return a & b;
+                return a && b;
 
             case 1:
-                return a | b;
+                return a || b;
 
             case 2:
                 return !a;

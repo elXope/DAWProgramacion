@@ -50,11 +50,11 @@ public class provetes2 {
         plantilla[10][1] = 6;
         plantilla[10][2] = 10;
         plantilla[11][0] = 14;
-        plantilla[11][1] = 12;
-        plantilla[11][2] = 13; //
+        plantilla[11][1] = 13;
+        plantilla[11][2] = 12; //
         plantilla[12][0] = 15;
-        plantilla[12][1] = 13;
-        plantilla[12][2] = 0;
+        plantilla[12][1] = 0;
+        plantilla[12][2] = 13;
 
         Circuit circo = new Circuit(llista, plantilla);
         circo.taulaVeritat();
