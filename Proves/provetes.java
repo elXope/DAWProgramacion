@@ -1,6 +1,6 @@
 public class provetes {
     public static void main(String[] args) {
-        Circuit circo = new Circuit(5);
+        /*Circuit circo = new Circuit(5);
         circo.taulaVeritat();
         circo.display();
 
@@ -9,9 +9,9 @@ public class provetes {
         }
         for(int i = 0; i < circo.llistaPortes.length; i++){
             System.out.println(circo.llistaPortes[i].tipo);
-        }
+        }*/
 
-        /*CIRCUIT FULL ADDER
+        //CIRCUIT FULL ADDER
         Porta[] llista = new Porta[13];
         llista[0] = new Porta(0);
         llista[1] = new Porta(2);
@@ -72,6 +72,8 @@ public class provetes {
 
         Circuit circo = new Circuit(llista, plantilla);
         circo.taulaVeritat();
-        circo.display();*/
+        //circo.display();
+        EvoCircuit circo2 = new EvoCircuit(circo.solucio);
+        System.out.println(circo.solucio.length + " " + circo2.fitness(circo));
     }
 }
