@@ -1,5 +1,10 @@
 public class provetes {
     public static void main(String[] args) {
+        Circuit circo = new Circuit(20);
+        circo.taulaVeritat();
+        circo.display();
+        
+        /*CIRCUIT FULL ADDER
         Porta[] llista = new Porta[13];
         llista[0] = new Porta(0);
         llista[1] = new Porta(2);
@@ -60,6 +65,6 @@ public class provetes {
 
         Circuit circo = new Circuit(llista, plantilla);
         circo.taulaVeritat();
-        circo.display();
+        circo.display();*/
     }
 }

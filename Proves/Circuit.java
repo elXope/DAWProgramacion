@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Circuit {
     Porta[] llistaPortes; //vector amb totes les portes
@@ -8,7 +9,13 @@ public class Circuit {
     boolean[][] solucio; //serà la matriu on se guardaran les solucions del circuit, és a dir, la solucio de la taula de la veritat per a les portes en les que el output no està connectat a res.
     int[] indexIxides; //índex de les ixides de un sistema
 
-    // CONSTRUCTOR se necessiten les portes i com estan connectades. Hauré de fer un constructor per a circuits aleatoris o una classe que me cree els inputs aleatòriament.
+
+    Circuit(int nPortes){
+        this.nPortes = (byte)nPortes;
+        aleatori(nPortes);
+    };
+    
+    // CONSTRUCTOR se necessiten les portes i com estan connectades.
     Circuit(Porta[] llistaPortes, byte[][] indexConnect){
         this.llistaPortes = llistaPortes;
         this.nPortes = (byte)llistaPortes.length;
@@ -103,18 +110,6 @@ public class Circuit {
             }
             System.out.print("\n");
         }
-        for(int i = 0; i < this.solucio.length; i++){
-            for(int k = 0; k < this.indexIxides.length; k++){
-                if(this.indexIxides[k] == i){
-                    for(int j = 0; j < this.solucio[0].length; j++){
-                        System.out.print(this.solucio[i][j] + " ");
-                        if(j == this.solucio[0].length - 1){
-                            System.out.print("\n");
-                        }
-                    }
-                }
-            }
-        }
     }
 
     // Ara no té arguments però vull arribar a posar el nº d inputs com a argument de Circuit.
@@ -145,5 +140,17 @@ public class Circuit {
         input[7][1] = true;
         input[7][2] = true;
         return input;
+    }
+
+    public void aleatori(int nPortes){
+        this.llistaPortes = new Porta[nPortes];
+        this.indexConnect = new byte[nPortes][3];
+        Random rand = new Random();
+        for (int i = 0; i < nPortes; i++){
+            this.llistaPortes[i].tipo = (byte)rand.nextInt(3);
+            this.indexConnect[i][0] = (byte)(i + 3);
+            this.indexConnect[i][1] = (byte)rand.nextInt(i+3);
+            this.indexConnect[i][2] = (byte)rand.nextInt(i+3);
+        }
     }
 }
