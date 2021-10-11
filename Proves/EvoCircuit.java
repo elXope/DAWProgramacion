@@ -46,7 +46,7 @@ public class EvoCircuit {
     private void crearPoblacio(){
         this.poblacio = new Circuit[this.nCircuits];
         for(int i = 0; i < this.nCircuits; i++){
-            this.poblacio[i] = new Circuit(rand.nextInt(this.maxPortes + 1));
+            this.poblacio[i] = new Circuit(rand.nextInt(this.maxPortes) + 1);
             this.poblacio[i].taulaVeritat();
         }
     }
@@ -54,25 +54,7 @@ public class EvoCircuit {
     public void displayTot(){
         System.out.println("Població: " + this.poblacio.length + "\n\n");
         for(int i = 0; i < this.poblacio.length; i++){
-            System.out.println("Circuit " + i + ":");
-            System.out.println("Nº portes: " + this.poblacio[i].nPortes);
-            System.out.println("Nº outputs: " + this.poblacio[i].indexIxides.length);
-            System.out.println("Outputs:");
-            this.poblacio[i].display();
-            System.out.println("\nLlista portes: ");
-            for(int j = 0; j < this.poblacio[i].nPortes; j++){
-                System.out.println("Porta " + this.poblacio[i].indexConnect[j][0] + ":");
-                if(this.poblacio[i].llistaPortes[j].tipo == 0){
-                    System.out.println("  Tipo: AND");
-                }else if(this.poblacio[i].llistaPortes[j].tipo == 1){
-                    System.out.println("  Tipo: OR");
-                }else if(this.poblacio[i].llistaPortes[j].tipo == 2){
-                    System.out.println("  Tipo: NOT");
-                }else{
-                    System.out.println("xddd");
-                }
-                System.out.println("  Inputs: " + this.poblacio[i].indexConnect[j][1] + " " + this.poblacio[i].indexConnect[j][2] + "\n");
-            }
+            displayCircuit(i);
         }
     }
 

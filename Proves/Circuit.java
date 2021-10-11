@@ -55,6 +55,7 @@ public class Circuit {
 
             contSolucions = 0;
             for (int i : this.indexIxides){
+                //System.out.println(this.indexConnect[i][0] +" "+ this.indexConnect[i][1] +" "+ this.indexConnect[i][2]);
                 output = solucioFrac(this.indexConnect[i], output);
                 this.solucio[contSolucions][contEstats] = output[i+3][1];
                 contSolucions++;
