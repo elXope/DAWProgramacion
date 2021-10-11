@@ -13,7 +13,7 @@ public class provetes2 {
             System.out.println("\n");
         }*/
 
-        Circuit prova = new Circuit(20);
+        Circuit prova = new Circuit(120);
         prova.taulaVeritat();
         System.out.println(prova.solucio.length + " " + circo.fitness(prova));
     }
