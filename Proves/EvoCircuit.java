@@ -27,7 +27,10 @@ public class EvoCircuit {
                 }
             }
         }
-        double match = finalCont/(this.objectiu.length * circuit.solucio.length);
-        return match;
+        int extraPortes = 0;
+        if(circuit.solucio.length > this.objectiu.length){
+            extraPortes = circuit.solucio.length - this.objectiu.length;
+        }
+        return finalCont/(this.objectiu.length * circuit.solucio.length) - (double)extraPortes/this.objectiu.length;
     }
 }
