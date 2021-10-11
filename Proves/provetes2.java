@@ -5,7 +5,7 @@ public class provetes2 {
             {false, false, false, true, false, true, true, true}
         };
 
-        EvoCircuit circo = new EvoCircuit(objectiu);
+        //EvoCircuit circo = new EvoCircuit(objectiu);
         /*for (int i = 0; i < circo.objectiu.length; i++) {
             for (int j = 0; j < circo.objectiu[0].length; j++) {
                 System.out.print(circo.objectiu[i][j] + " ");
@@ -15,6 +15,6 @@ public class provetes2 {
 
         Circuit prova = new Circuit(100);
         prova.taulaVeritat();
-        System.out.println(prova.solucio.length + " " + circo.fitness(prova));
+        //System.out.println(prova.solucio.length + " " + circo.fitness(prova));
     }
 }

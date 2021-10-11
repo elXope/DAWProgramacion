@@ -13,7 +13,8 @@ public class Circuit {
     Circuit(int nPortes){
         this.nPortes = (byte)nPortes;
         aleatori(nPortes);
-    };
+        indIx();
+    }
     
     // CONSTRUCTOR se necessiten les portes i com estan connectades.
     Circuit(Porta[] llistaPortes, byte[][] indexConnect){
@@ -156,6 +157,5 @@ public class Circuit {
                 this.indexConnect[i][2] = (byte)rand.nextInt(i+3);
             }
         }
-        indIx();
     }
 }
