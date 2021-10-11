@@ -73,8 +73,8 @@ public class provetes {
         Circuit circo = new Circuit(llista, plantilla);
         circo.taulaVeritat();
         //circo.display();
-        EvoCircuit circo2 = new EvoCircuit(circo.solucio, 10, 20);
-        circo2.displayTot();
+        EvoCircuit circo2 = new EvoCircuit(circo.solucio, 1000, 101);
+        //circo2.displayCircuit(5);
         System.out.println(circo2.fitness(circo2.poblacio[5]));
     }
 }

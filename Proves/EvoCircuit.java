@@ -17,6 +17,19 @@ public class EvoCircuit {
         crearPoblacio();
     }
 
+    private void crearPoblacio(){
+        this.poblacio = new Circuit[this.nCircuits];
+        for(int i = 0; i < this.nCircuits; i++){
+            this.poblacio[i] = new Circuit(rand.nextInt(this.maxPortes) + 1);
+            this.poblacio[i].taulaVeritat();
+        }
+    }
+
+    public Circuit recombinacio(Circuit circuit1, Circuit circuit2){
+        /// MHE KEDAT ACÍ ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        return circuit1;
+    }
+    
     public double fitness(Circuit circuit){
         circuit.taulaVeritat();
         double matchCont;
@@ -41,14 +54,6 @@ public class EvoCircuit {
             extraPortes = circuit.solucio.length - this.objectiu.length;
         }*/
         return finalCont/(this.objectiu.length * circuit.solucio.length)- circuit.nPortes*0.001;
-    }
-
-    private void crearPoblacio(){
-        this.poblacio = new Circuit[this.nCircuits];
-        for(int i = 0; i < this.nCircuits; i++){
-            this.poblacio[i] = new Circuit(rand.nextInt(this.maxPortes) + 1);
-            this.poblacio[i].taulaVeritat();
-        }
     }
 
     public void displayTot(){
