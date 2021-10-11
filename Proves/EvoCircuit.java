@@ -2,10 +2,14 @@ public class EvoCircuit {
     boolean[][] objectiu;
     int[] fitnessLlista;
     byte nEstats = 8; //hauré d canviar-ho pa quan vullga n entrades
+    int maxPortes;
+    int nCircuits;
 
-    EvoCircuit(boolean[][] objectiu){
+    EvoCircuit(boolean[][] objectiu, int nCircuits, int maxPortes){
         this.objectiu = new boolean[objectiu.length][this.nEstats];
         this.objectiu = objectiu;
+        this.nCircuits = nCircuits;
+        this.maxPortes = maxPortes;
     }
 
     public double fitness(Circuit circuit){
@@ -21,16 +25,16 @@ public class EvoCircuit {
                     }
                 }
                 if(matchCont == 8){
-                    finalCont = finalCont + 5;
+                    finalCont = finalCont + 2;
                 }else{
                     finalCont = finalCont + matchCont/8;
                 }
             }
         }
-        int extraPortes = 0;
+        /*int extraPortes = 0;
         if(circuit.solucio.length > this.objectiu.length){
             extraPortes = circuit.solucio.length - this.objectiu.length;
-        }
-        return finalCont/(this.objectiu.length * circuit.solucio.length) - (double)extraPortes/this.objectiu.length;
+        }*/
+        return finalCont/(this.objectiu.length * circuit.solucio.length)- circuit.nPortes*0.001;
     }
 }
