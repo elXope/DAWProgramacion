@@ -114,6 +114,27 @@ public class Circuit {
         }
     }
 
+    public void displayPublic() {
+        System.out.println("Nº portes: " + this.nPortes);
+        System.out.println("Nº outputs: " + this.indexIxides.length);
+        System.out.println("Outputs:");
+        display();
+        System.out.println("\nLlista portes: ");
+        for(int j = 0; j < this.nPortes; j++){
+            System.out.println("Porta " + this.indexConnect[j][0] + ":");
+            if(this.llistaPortes[j].tipo == 0){
+                System.out.println("  Tipo: AND");
+            }else if(this.llistaPortes[j].tipo == 1){
+                System.out.println("  Tipo: OR");
+            }else if(this.llistaPortes[j].tipo == 2){
+                System.out.println("  Tipo: NOT");
+            }else{
+                System.out.println("xddd");
+            }
+            System.out.println("  Inputs: " + this.indexConnect[j][1] + " " + this.indexConnect[j][2] + "\n");
+        }
+    }
+
     // Ara no té arguments però vull arribar a posar el nº d inputs com a argument de Circuit.
     private boolean[][] inputComb(){
         boolean[][] input = new boolean[8][3]; 

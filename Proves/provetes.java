@@ -70,11 +70,18 @@ public class provetes {
         
 
 
-        Circuit circo = new Circuit(llista, plantilla);
-        circo.taulaVeritat();
-        //circo.display();
-        EvoCircuit circo2 = new EvoCircuit(circo.solucio, 1000, 101);
-        circo2.displayCircuit(5);
-        System.out.println(circo2.fitness(circo2.poblacio[5]));
+        Circuit cirkuit1 = new Circuit(llista, plantilla);
+        cirkuit1.taulaVeritat();
+        Circuit cirkuit2 = new Circuit(20);
+        cirkuit2.aleatori();
+        cirkuit2.taulaVeritat();
+
+        EvoCircuit circo2 = new EvoCircuit(cirkuit1.solucio, 1000, 101);
+        /*circo2.displayCircuit(5);
+        System.out.println(circo2.fitness(circo2.poblacio[5]));*/
+        Circuit pepe = circo2.procrear(cirkuit1, cirkuit2);
+        cirkuit1.displayPublic();
+        cirkuit2.displayPublic();
+        pepe.displayPublic();
     }
 }
