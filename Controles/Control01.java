@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Control01 {
     public static void main(String[] args) {
         Scanner lector = new Scanner(System.in);
-        byte numeroLados;
+        int numeroLados;
         double longitudLados;
         double perimetro = 0;
 
@@ -14,9 +14,7 @@ public class Control01 {
             System.out.println("Dime la longitud del lado del polígono: ");
             longitudLados = lector.nextDouble();
 
-            for (byte i = 0; i < numeroLados; i++){
-                perimetro = perimetro + longitudLados;
-            }
+            perimetro = longitudLados * numeroLados;
 
             if (numeroLados == 3) {
                 System.out.println("El perímetro del triángulo es " + perimetro);
