@@ -1,8 +1,9 @@
 import java.util.Random;
+import java.util.Arrays;
 
 public class EvoCircuit {
     boolean[][] objectiu;
-    int[] fitnessLlista;
+    double[] fitnessLlista;
     byte nEstats = 8; //hauré d canviar-ho pa quan vullga n entrades
     int maxPortes;
     int nCircuits;
@@ -17,6 +18,7 @@ public class EvoCircuit {
         this.objectiu = objectiu;
         this.nCircuits = nCircuits;
         this.maxPortes = maxPortes;
+        this.fitnessLlista = new double[nCircuits];
         crearPoblacio();
     }
 
@@ -26,6 +28,35 @@ public class EvoCircuit {
             this.poblacio[i] = new Circuit(rand.nextInt(this.maxPortes) + 1);
             this.poblacio[i].aleatori();
             this.poblacio[i].taulaVeritat(); //igual se pot llevar perquè al fer la fitness calcula la TV
+        }
+    }
+
+    public void optimitzaCircuit(){
+        int[] indexCircuits = new int[this.nCircuits];
+        for (int i = 0; i < this.nCircuits; i++) {
+            this.fitnessLlista[i] = fitness(this.poblacio[i]);
+            indexCircuits[i] = i;
+        }
+        indexCircuits = ordenaPerFitness(indexCircuits);
+    }
+
+    private int[] ordenaPerFitness(int[] indexCircuits){ //Ho he de mirar molt
+        int[] indexProvisional = new int[this.nCircuits];
+        indexProvisional[0] = indexCircuits[0];
+        for(int i = 1; i < this.nCircuits; i++){
+            if(this.fitness(indexCircuits[i]) <= this.fitness(indexProvisional[i-1])){
+                indexProvisional[i] = indexCircuits[i];
+            } else {
+
+            }
+            for(int j = i - 1; j >= 0; j--){
+                if(indexCircuits[j+1] <= indexCircuits[j]){
+                    indexProvisional[j+1] = indexCircuits[j+1];
+                    break;
+                } else {
+                    indexProvisional[]
+                }
+            }
         }
     }
 
@@ -52,7 +83,7 @@ public class EvoCircuit {
             recombinacio(fill, circuit2, circuit1);
 
         }
-        
+        fill.indIx();
         return fill;
     }
 

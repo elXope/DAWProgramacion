@@ -82,7 +82,7 @@ public class Circuit {
     }
 
     //Per a trobar els index de les ixides del sistema
-    private void indIx(){
+    public void indIx(){
         ArrayList<Integer> indexProv = new ArrayList<Integer>();
         boolean noEsInd;
         for(int i = 0; i < this.indexConnect.length - 1; i++){

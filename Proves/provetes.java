@@ -79,7 +79,8 @@ public class provetes {
         EvoCircuit circo2 = new EvoCircuit(cirkuit1.solucio, 1000, 101);
         /*circo2.displayCircuit(5);
         System.out.println(circo2.fitness(circo2.poblacio[5]));*/
-        Circuit pepe = circo2.procrear(cirkuit1, cirkuit2);
+        Circuit pepe = circo2.procrear(cirkuit2, cirkuit1);
+        pepe.taulaVeritat();
         cirkuit1.displayPublic();
         cirkuit2.displayPublic();
         pepe.displayPublic();
