@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Circuit {
     Porta[] llistaPortes; //vector amb totes les portes
-    byte nPortes; //número de portes
+    final byte nPortes; //número de portes
     byte[][] indexConnect; // el índex de la porta en la llista de outputs (si tenim 3 inputs la primera porta serà el ind 3)
     byte nInputs = 3; //numero de inputs. Per ara use tres sempre.
     boolean[][] solucio; //serà la matriu on se guardaran les solucions del circuit, és a dir, la solucio de la taula de la veritat per a les portes en les que el output no està connectat a res.

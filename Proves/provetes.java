@@ -74,7 +74,7 @@ public class provetes {
         circo.taulaVeritat();
         //circo.display();
         EvoCircuit circo2 = new EvoCircuit(circo.solucio, 1000, 101);
-        //circo2.displayCircuit(5);
+        circo2.displayCircuit(5);
         System.out.println(circo2.fitness(circo2.poblacio[5]));
     }
 }

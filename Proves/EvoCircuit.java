@@ -34,12 +34,31 @@ public class EvoCircuit {
         // El número de portes del fill estarà entre el dels progenitors
         if(circuit1.nPortes > circuit2.nPortes){
             nPortesFill = rand.nextInt(circuit1.nPortes - circuit2.nPortes) + circuit2.nPortes;
+            nPortesFill = mutacioNPortes(nPortesFill);
+
         } else if(circuit2.nPortes > circuit1.nInputs){
             nPortesFill = rand.nextInt(circuit2.nPortes - circuit1.nPortes) + circuit1.nPortes;
+            nPortesFill = mutacioNPortes(nPortesFill);
+
         } else {
             nPortesFill = circuit1.nPortes;
+            nPortesFill = mutacioNPortes(nPortesFill);
+
         }
-        // Si muta s'afegix o se lleva una porta
+        
+        Circuit fill = new Circuit(nPortesFill);
+        for(int i = 0; i < nPortesFill; i++){       // Hauré de mirar si en lloc de dixar un numero aleatori entre les dos portes mos quedem en un nPortes o un altre
+            while(i < circuitMenor.nPortes){
+                if(rand.nextDouble() < 0.5){
+                    fill.llistaPortes[i] = circuitMenor.llistaPortes[i];
+                    fill.indexConnect[j]
+                }
+            }
+        }
+        return circuit1;
+    }
+
+    private int mutacioNPortes(int nPortesFill){
         while(rand.nextDouble() < this.mutaNPorta){
             if(rand.nextDouble() < 0.5){
                 nPortesFill++;
@@ -47,8 +66,7 @@ public class EvoCircuit {
                 nPortesFill--;
             }
         }
-        //
-        return circuit1;
+        return nPortesFill;
     }
     
     public double fitness(Circuit circuit){
