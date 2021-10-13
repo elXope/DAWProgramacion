@@ -9,7 +9,7 @@ public class EvoCircuit {
     Circuit[] poblacio;
     Random rand = new Random();
     double mutaNPorta = 0.001; // valors provisionals
-    double mutaTipoPorta;
+    double mutaTipoPorta = 0.001;
     double mutaEnllas; //sé k seskriu enllaç
 
     EvoCircuit(boolean[][] objectiu, int nCircuits, int maxPortes){
@@ -29,33 +29,31 @@ public class EvoCircuit {
         }
     }
 
-    public Circuit recombinacio(Circuit circuit1, Circuit circuit2){
+    public Circuit procrear(Circuit circuit1, Circuit circuit2){
         int nPortesFill;
+        Circuit fill;
         // El número de portes del fill estarà entre el dels progenitors
         if(circuit1.nPortes > circuit2.nPortes){
             nPortesFill = rand.nextInt(circuit1.nPortes - circuit2.nPortes) + circuit2.nPortes;
             nPortesFill = mutacioNPortes(nPortesFill);
+            fill = new Circuit(nPortesFill);
+            recombinacio(fill, circuit1, circuit2);
 
         } else if(circuit2.nPortes > circuit1.nInputs){
             nPortesFill = rand.nextInt(circuit2.nPortes - circuit1.nPortes) + circuit1.nPortes;
             nPortesFill = mutacioNPortes(nPortesFill);
+            fill = new Circuit(nPortesFill);
+            recombinacio(fill, circuit2, circuit1);
 
         } else {
             nPortesFill = circuit1.nPortes;
             nPortesFill = mutacioNPortes(nPortesFill);
+            fill = new Circuit(nPortesFill);
+            recombinacio(fill, circuit2, circuit1);
 
         }
         
-        Circuit fill = new Circuit(nPortesFill);
-        for(int i = 0; i < nPortesFill; i++){       // Hauré de mirar si en lloc de dixar un numero aleatori entre les dos portes mos quedem en un nPortes o un altre
-            while(i < circuitMenor.nPortes){
-                if(rand.nextDouble() < 0.5){
-                    fill.llistaPortes[i] = circuitMenor.llistaPortes[i];
-                    fill.indexConnect[j]
-                }
-            }
-        }
-        return circuit1;
+        return fill;
     }
 
     private int mutacioNPortes(int nPortesFill){
@@ -67,6 +65,61 @@ public class EvoCircuit {
             }
         }
         return nPortesFill;
+    }
+
+    private void recombinacio (Circuit fill, Circuit circuitMajor, Circuit circuitMenor){
+        int i = 0;
+        while(i < fill.nPortes){       // Hauré de mirar si en lloc de dixar un numero aleatori entre les dos portes mos quedem en un nPortes o un altre
+            while(i < circuitMenor.nPortes){
+                if(rand.nextDouble() < 0.5){
+                    fill.llistaPortes[i] = circuitMenor.llistaPortes[i];
+                    fill.indexConnect[i] = circuitMenor.indexConnect[i];
+                } else {
+                    fill.llistaPortes[i] = circuitMajor.llistaPortes[i];
+                    fill.indexConnect[i] = circuitMajor.indexConnect[i];
+                }
+                if(rand.nextDouble() < this.mutaTipoPorta){
+                    fill.llistaPortes[i].tipo = (byte)rand.nextInt(3);
+                    if(fill.llistaPortes[i].tipo == 2){
+                        fill.indexConnect[i][1] = fill.indexConnect[i][2];
+                    }
+                }
+                if(rand.nextDouble() < this.mutaEnllas){
+                    if(fill.llistaPortes[i].tipo == 2){
+                        fill.indexConnect[i][1] = (byte)rand.nextInt(i);
+                        fill.indexConnect[i][2] = fill.indexConnect[i][1];
+                    } else {
+                        if(rand.nextDouble() < 0.5){
+                            fill.indexConnect[i][1] = (byte)rand.nextInt(i);
+                        } else {
+                            fill.indexConnect[i][2] = (byte)rand.nextInt(i);
+                        }
+                    }
+                }
+                i++;
+            }
+            fill.llistaPortes[i] = circuitMajor.llistaPortes[i];
+            fill.indexConnect[i] = circuitMajor.indexConnect[i];
+            if(rand.nextDouble() < this.mutaTipoPorta){
+                fill.llistaPortes[i].tipo = (byte)rand.nextInt(3);
+                if(fill.llistaPortes[i].tipo == 2){
+                    fill.indexConnect[i][1] = fill.indexConnect[i][2];
+                }
+            }
+            if(rand.nextDouble() < this.mutaEnllas){
+                if(fill.llistaPortes[i].tipo == 2){
+                    fill.indexConnect[i][1] = (byte)rand.nextInt(i);
+                    fill.indexConnect[i][2] = fill.indexConnect[i][1];
+                } else {
+                    if(rand.nextDouble() < 0.5){
+                        fill.indexConnect[i][1] = (byte)rand.nextInt(i);
+                    } else {
+                        fill.indexConnect[i][2] = (byte)rand.nextInt(i);
+                    }
+                }
+            }
+            i++;
+        }
     }
     
     public double fitness(Circuit circuit){
