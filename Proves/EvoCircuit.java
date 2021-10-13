@@ -8,6 +8,9 @@ public class EvoCircuit {
     int nCircuits;
     Circuit[] poblacio;
     Random rand = new Random();
+    double mutaNPorta = 0.001; // valors provisionals
+    double mutaTipoPorta;
+    double mutaEnllas; //sé k seskriu enllaç
 
     EvoCircuit(boolean[][] objectiu, int nCircuits, int maxPortes){
         this.objectiu = new boolean[objectiu.length][this.nEstats];
@@ -21,12 +24,30 @@ public class EvoCircuit {
         this.poblacio = new Circuit[this.nCircuits];
         for(int i = 0; i < this.nCircuits; i++){
             this.poblacio[i] = new Circuit(rand.nextInt(this.maxPortes) + 1);
-            this.poblacio[i].taulaVeritat();
+            this.poblacio[i].aleatori();
+            this.poblacio[i].taulaVeritat(); //igual se pot llevar perquè al fer la fitness calcula la TV
         }
     }
 
     public Circuit recombinacio(Circuit circuit1, Circuit circuit2){
-        /// MHE KEDAT ACÍ ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        int nPortesFill;
+        // El número de portes del fill estarà entre el dels progenitors
+        if(circuit1.nPortes > circuit2.nPortes){
+            nPortesFill = rand.nextInt(circuit1.nPortes - circuit2.nPortes) + circuit2.nPortes;
+        } else if(circuit2.nPortes > circuit1.nInputs){
+            nPortesFill = rand.nextInt(circuit2.nPortes - circuit1.nPortes) + circuit1.nPortes;
+        } else {
+            nPortesFill = circuit1.nPortes;
+        }
+        // Si muta s'afegix o se lleva una porta
+        while(rand.nextDouble() < this.mutaNPorta){
+            if(rand.nextDouble() < 0.5){
+                nPortesFill++;
+            } else {
+                nPortesFill--;
+            }
+        }
+        //
         return circuit1;
     }
     
