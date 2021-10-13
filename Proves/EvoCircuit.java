@@ -44,7 +44,7 @@ public class EvoCircuit {
         int[] indexProvisional = new int[this.nCircuits];
         indexProvisional[0] = indexCircuits[0];
         for(int i = 1; i < this.nCircuits; i++){
-            if(this.fitness(indexCircuits[i]) <= this.fitness(indexProvisional[i-1])){
+            if(this.fitnessLlista[indexCircuits[i]] <= this.fitnessLlista[indexProvisional[i-1]]){
                 indexProvisional[i] = indexCircuits[i];
             } else {
 
@@ -54,10 +54,11 @@ public class EvoCircuit {
                     indexProvisional[j+1] = indexCircuits[j+1];
                     break;
                 } else {
-                    indexProvisional[]
+                    //indexProvisional[]/////////////
                 }
             }
         }
+        return indexProvisional;
     }
 
     public Circuit procrear(Circuit circuit1, Circuit circuit2){
