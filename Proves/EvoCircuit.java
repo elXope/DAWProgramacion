@@ -54,11 +54,11 @@ public class EvoCircuit {
                     indexProvisional[j+1] = indexCircuits[j+1];
                     break;
                 } else {
-                    //indexProvisional[]/////////////
+                    //indexProvisional[]
                 }
             }
         }
-        return indexProvisional;
+        return indexCircuits;
     }
 
     public Circuit procrear(Circuit circuit1, Circuit circuit2){
