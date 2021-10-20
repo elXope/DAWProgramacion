@@ -1,6 +1,8 @@
+package Tema1;
+
 public class Main {
     public static void main(String[] args) {
-        T1Ex1 prova = new T1Ex1();
-        prova.display();
+        Ex8 a = new Ex8();
+        a.prova();
     }
 }
