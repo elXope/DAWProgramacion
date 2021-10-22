@@ -11,16 +11,17 @@ public class Ejemplo24 {
         float grade = llig.nextFloat();
 
         while (grade != -1){
-            sum = sum + grade;
+            sum += grade;
             i++;
             if (grade == 10){
                 wasTen = true;
             }
             grade = llig.nextFloat();
         }
-
         llig.close();
 
+        if (i == 0) return;
+        
         System.out.println("Average: " + (sum/i));
 
         if (wasTen){
