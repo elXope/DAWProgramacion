@@ -15,4 +15,3 @@ public class Ejemplo25 {
         System.out.println("Factorial: " + factorial);
     }
 }
-
