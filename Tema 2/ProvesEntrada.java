@@ -4,6 +4,6 @@ public class ProvesEntrada {
         System.out.println("L'enter introduit és: " + a);
 
         double d = Entrada.getDouble();
-        System.out.println("El double introduit és: " + a);
+        System.out.println("El double introduit és: " + d);
     }
 }
