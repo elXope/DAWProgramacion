@@ -31,9 +31,11 @@ public class Entrada {
         System.out.println("Introduix un número enter: ");
         if (!lector.hasNextInt()){
             System.out.println("Això no és un enter.");
+            lector.close();
             enter = getInteger();
         }else{
             enter = lector.nextInt();
+            lector.close();
         }
         return enter;
     }
