@@ -34,5 +34,8 @@ public class ProvesClasses {
         /*double[] doubleArr = {0, 10.3, 2,-3.435, -11};
         System.out.println("En el array {0, 10,3, 2, -3,435, -11} hay " + Positivos.positivos(doubleArr) + " números positivos.");*/
 
+        // PROVES LETRADNI.JAVA
+        int dni = 53727535;
+        System.out.println("DNI: " + dni + LetraDni.letraDni(dni));
     }
 }
