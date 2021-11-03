@@ -35,7 +35,11 @@ public class ProvesClasses {
         System.out.println("En el array {0, 10,3, 2, -3,435, -11} hay " + Positivos.positivos(doubleArr) + " números positivos.");*/
 
         // PROVES LETRADNI.JAVA
-        int dni = 53727535;
-        System.out.println("DNI: " + dni + LetraDni.letraDni(dni));
-    }
+        /*int dni = 53727535;
+        System.out.println("DNI: " + dni + LetraDni.letraDni(dni));*/
+
+        // PROVES PRIMO.JAVA
+        System.out.println("23 és primo? " + Primo.esPrimo(23));
+        System.out.println("32 és primo? " + Primo.esPrimo(32));
+        }
 }
