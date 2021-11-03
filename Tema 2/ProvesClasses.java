@@ -39,7 +39,10 @@ public class ProvesClasses {
         System.out.println("DNI: " + dni + LetraDni.letraDni(dni));*/
 
         // PROVES PRIMO.JAVA
-        System.out.println("23 és primo? " + Primo.esPrimo(23));
-        System.out.println("32 és primo? " + Primo.esPrimo(32));
+        /*System.out.println("23 és primo? " + Primo.esPrimo(23));
+        System.out.println("32 és primo? " + Primo.esPrimo(32));*/
+
+        // PROVES PRIMOS.JAVA
+        // Primos.primos();
         }
 }
