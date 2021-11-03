@@ -24,11 +24,15 @@ public class ProvesClasses {
         System.out.println("Poden medir els costats d'un triangle 10, 5 i 14? " + EsTriangulo.esTriangulo(10, 5, 14));*/
 
         // PROVES POTENCIA.JAVA
-        System.out.println("3³ = " + Potencia.potencia(3, 3));
+        /*System.out.println("3³ = " + Potencia.potencia(3, 3));
         System.out.println("3¹ = " + Potencia.potencia(3, 1));
         System.out.println("3⁰ = " + Potencia.potencia(3, 0));
         System.out.println("3⁻¹ = " + Potencia.potencia(3, -1));
-        System.out.println("3⁻³ = " + Potencia.potencia(3, -3));
+        System.out.println("3⁻³ = " + Potencia.potencia(3, -3));*/
+
+        // PROVES POSITIVOS.JAVA
+        /*double[] doubleArr = {0, 10.3, 2,-3.435, -11};
+        System.out.println("En el array {0, 10,3, 2, -3,435, -11} hay " + Positivos.positivos(doubleArr) + " números positivos.");*/
 
     }
 }
