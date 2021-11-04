@@ -1,31 +1,35 @@
 package EvoCircuit;
 
 public class Porta {
-    boolean input1;
-    boolean input2;
-    byte codi;
-    String tipo;
+    
+    byte tipo; // 0 AND, 1 OR, 3 NOT
 
-    Porta(boolean input1){
-        this.tipo = "not";
-        this.codi = 0;
-        this.input1 = input1;
+    Porta(int tipo){
+        this.tipo = (byte)tipo;
     }
 
-    Porta(byte codi, boolean input1, boolean input2){
-        this.codi = codi;
-        switch (codi) {
+    public void inicialitzar(int tipo){
+        this.tipo = (byte)tipo;
+    }
+
+    public boolean output(boolean a, boolean b){
+        // triar 0, 1 o 2 per a fer AND, OR o NOT
+        switch (this.tipo){
+            case 0:
+                return a && b;
+
             case 1:
-                this.tipo = "and";
-                break;
+                return a || b;
+
             case 2:
-                this.tipo = "or";
-                break;
+                return !a;
+
+            case 3: 
+                return a ^ b;
+
             default:
-            System.out.println("1 -> and\n2 -> or");
-                break;
+                System.out.println("Hi ha un error en el metode tria de Porta");
+                return false;  
         }
-        this.input1 = input1;
-        this.input2 = input2;
     }
 }
