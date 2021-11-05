@@ -14,7 +14,7 @@ public class E03 {
             System.out.print(posicio + " nota: ");
             mitjana += lector.nextDouble();
         }
-
+        lector.close();
         mitjana = round(mitjana/4, 2);
 
         System.out.println("El promedio es: " + mitjana);        
