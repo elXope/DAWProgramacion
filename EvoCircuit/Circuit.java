@@ -4,6 +4,7 @@ public class Circuit {
     Porta[] portes;
     int[][] connect;
     int nInputs;
+    double fitness;
 
     Circuit(Porta[] portes, int[][] connect, int nInputs){
         this.portes = portes;
@@ -44,5 +45,11 @@ public class Circuit {
         for (Porta porta : this.portes) {
             porta.display();
         }
+    }
+
+    public int compareTo(Circuit circuit){
+        if (circuit.fitness > this.fitness) return -1;
+        else if (circuit.fitness < this.fitness) return 1;
+        else return 0;
     }
 }

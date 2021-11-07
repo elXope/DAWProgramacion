@@ -19,19 +19,25 @@ public class Proves {
             {1, 2},
             {3, 3},
             {1, 2},
-            {4, 5},
+            {4, 2},//5},
             {1, 2},
             {0, 1},
             {0, 2},
             {0, 6},
             {10, 10},
-            {6, 0},
+            {6, 3},//0
             {11, 12},
             {7, 8},
             {14, 9}
         };
 
         Circuit circuit = new Circuit(llista, connect, 3);
-        circuit.displayOutput();
+        //circuit.displayOutput();
+
+        AlgoritmeEvo ebolusio = new AlgoritmeEvo();
+        ebolusio.poblacio = new Circuit[1];
+        ebolusio.poblacio[0] = circuit;
+        ebolusio.busca();
+        System.out.println(circuit.fitness);
     }
 }
