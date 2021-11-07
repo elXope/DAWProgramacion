@@ -1,5 +1,3 @@
-package EvoCircuit;
-
 public class Porta {
     
     byte tipo; // 0 AND, 1 OR, 3 NOT
@@ -30,6 +28,29 @@ public class Porta {
             default:
                 System.out.println("Hi ha un error en el metode tria de Porta");
                 return false;  
+        }
+    }
+
+    public void display(){
+        switch (this.tipo){
+            case 0:
+                System.out.println("AND");
+                break;
+
+            case 1:
+                System.out.println("OR");
+                break;
+
+            case 2:
+                System.out.println("NOT");
+                break;
+
+            case 3:
+                System.out.println("XOR");
+                break;
+
+            default:
+                System.out.println("Encara no s'ha especificat el tipus de porta.");
         }
     }
 }

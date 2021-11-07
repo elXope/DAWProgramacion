@@ -1,6 +1,4 @@
-package EvoCircuit;
-
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Circuit {
     Porta[] portes;
@@ -14,53 +12,37 @@ public class Circuit {
     }
 
     public boolean[][] output(){
-        int[] indOutput = indexOutput();
-        return trobaOutput(indOutput);
-    }
-
-    private int[] indexOutput(){
-        ArrayList<Integer> indexProv = new ArrayList<>();
-        for (int i = 0; i < this.connect.length - 1; i++) {
-            label1:
-            for (int j = i; j < this.connect.length - 1; j++) {
-                if (i + 3 == this.connect[j+1][0] || i + 3 == this.connect[j+1][1]){
-                    i++;
-                    break label1;
-                }
+        boolean[][] output = new boolean[(int)Math.pow(2,this.nInputs)][this.portes.length];
+        boolean[][] estatInputs = BinComb8.binComb8(this.nInputs);//new boolean [this.nInputs][(int)Math.pow(2,this.nInputs)];
+        boolean[] outputProv = new boolean[this.nInputs + this.portes.length];
+        int j = 0;
+        for (boolean[] input : estatInputs) {
+            for (int i = 0; i < input.length; i++) {
+                outputProv[i] = input[i];
             }
-            indexProv.add(i);
+            for (int i = this.nInputs; i < outputProv.length; i++) {
+                outputProv[i] = this.portes[i - this.nInputs].output(outputProv[this.connect[i-this.nInputs][0]],outputProv[this.connect[i-this.nInputs][1]]);
+            }
+            output[j] = Arrays.copyOfRange(outputProv, this.nInputs, outputProv.length);
+            j++;
         }
-        int[] indOutput = new int[indexProv.size()];
-        for (int i = 0; i < indexProv.size(); i++) {
-            indOutput[i] = indexProv.get(i).intValue();
-        }
-        return indOutput;
+        return output;
     }
 
-    private boolean[][] trobaOutput(int[] indOutput){
-        boolean[][] output = new boolean[this.portes.length + this.nInputs][(int)Math.pow(2,this.nInputs)];
-        boolean[] teOutput = new boolean[this.portes.length + this.nInputs];
-        for (int i = 0; i < this.nInputs; i++) {
-            teOutput[i] = true;
-        }
-        boolean[][] estatInputs = new boolean [this.nInputs][(int)Math.pow(2,this.nInputs)];
-        
-        for (int i : indOutput) {
-            output = recursiva(output, teOutput, i);
+    public void displayOutput() {
+        boolean[][] output = output();
+        for (boolean[] bs : output) {
+            for (boolean bs2 : bs) {
+                if(bs2) {System.out.print("1 ");}
+                else {System.out.print("0 ");}
+            }
+            System.out.println("\n");
         }
     }
 
-    private boolean[][] recursiva(boolean[][] output, boolean[] teOutput, int index){
-        if(!teOutput[index]){
-            if(!teOutput[this.connect[index][0]]){
-                output = recursiva(output, teOutput, this.connect[index][0]);
-                teOutput[this.connect[index][0]] = true;
-            }
-            if(!teOutput[this.connect[index][1]]){
-                output = recursiva(output, teOutput, this.connect[index][1]);
-                teOutput[this.connect[index][1]] = true;
-            }
-            output[index][]
+    public void displayPortes(){
+        for (Porta porta : this.portes) {
+            porta.display();
         }
     }
 }

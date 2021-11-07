@@ -1,7 +1,5 @@
-package EvoCircuit;
-
 public class Proves {
-    public static void main(String[] args) {
+    public static void main(String[] args) {        
         Porta[] llista = new Porta[13];
         llista[0] = new Porta(0);
         llista[1] = new Porta(2);
@@ -34,5 +32,6 @@ public class Proves {
         };
 
         Circuit circuit = new Circuit(llista, connect, 3);
+        circuit.displayOutput();
     }
 }
