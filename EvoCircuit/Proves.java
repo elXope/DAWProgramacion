@@ -31,13 +31,25 @@ public class Proves {
             {14, 9}
         };
 
-        Circuit circuit = new Circuit(llista, connect, 3);
-        //circuit.displayOutput();
+        /*Circuit circuit = new Circuit();
+        circuit.circuitAleatori(10, 3);
+        circuit.displayOutput();
+        circuit.displayPortes();*/
 
-        AlgoritmeEvo ebolusio = new AlgoritmeEvo();
+        /*AlgoritmeEvo ebolusio = new AlgoritmeEvo();
         ebolusio.poblacio = new Circuit[1];
         ebolusio.poblacio[0] = circuit;
         ebolusio.busca();
-        System.out.println(circuit.fitness);
+        System.out.println(circuit.fitness);*/
+
+        AlgoritmeEvo pedro = new AlgoritmeEvo();
+        pedro.poblacioAleatoria(100,3,60);
+        pedro.busca();
+        pedro.poblacio[0].displayOutput();
+        pedro.poblacio[0].displayPortes();
+        System.out.println(pedro.poblacio[0].fitness);
+        pedro.poblacio[70].displayOutput();
+        pedro.poblacio[70].displayPortes();
+        System.out.println(pedro.poblacio[70].fitness);
     }
 }
