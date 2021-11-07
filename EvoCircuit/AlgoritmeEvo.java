@@ -6,7 +6,7 @@ public class AlgoritmeEvo {
     public void busca(){
         for (int i = 0; i < this.maxIter; i++) {
             fitness();
-            //recombinacio();
+            recombinacio();
             //mutacio();
             //immigracio(this.nImmigracio);
         }
@@ -14,7 +14,7 @@ public class AlgoritmeEvo {
         //poblacio[0].displayOutput();
     }
 
-    public void fitness(){
+     private void fitness(){
         boolean[][] output;
         int matchPorta = 0;
         int totalPortes = 0;
@@ -41,6 +41,18 @@ public class AlgoritmeEvo {
                 provFitness += totalPortes/(i*j) + matchOutput*2;
             }
             individu.fitness = provFitness/objectiu.length;
+        }
+        this.poblacio.sort();
+    }
+
+    private void recombinacio(){
+
+    }
+
+    public Circuit[] crearPoblacio(int nIndividus, int nInputs){
+        this.poblacio = new Circuit[nIndividus];
+        for (Circuit individu : this.poblacio) {
+            
         }
     }
 }

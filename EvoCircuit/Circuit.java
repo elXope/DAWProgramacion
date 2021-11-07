@@ -47,9 +47,10 @@ public class Circuit {
         }
     }
 
-    public int compareTo(Circuit circuit){
-        if (circuit.fitness > this.fitness) return -1;
-        else if (circuit.fitness < this.fitness) return 1;
+    
+    public int compareTo(Circuit o){
+        if (o.fitness > this.fitness) return -1;
+        else if (o.fitness < this.fitness) return 1;
         else return 0;
     }
 }
