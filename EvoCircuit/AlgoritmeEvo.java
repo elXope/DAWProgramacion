@@ -12,9 +12,9 @@ public class AlgoritmeEvo {
     int maxPortes;
     int aproxImmigracio = 1000;
     Random rand = new Random();
-    BigDecimal probEnllas = new BigDecimal(1e-100);
-    BigDecimal probPorta = new BigDecimal(1e-100);
-    BigDecimal probCanviPorta = new BigDecimal(1e-100);
+    double probEnllas = 1e-5;
+    double probPorta = 1e-3;
+    double probCanviPorta = 1e-3;
 
     public void busca(){
         fitness2();
