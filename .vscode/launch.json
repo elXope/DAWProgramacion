@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Proves",
+            "request": "launch",
+            "mainClass": "EvoCircuit.Proves",
+            "projectName": "DAWProgramacion_f03cd4a2"
+        },
+        {
+            "type": "java",
             "name": "Launch E10",
             "request": "launch",
             "mainClass": "Control02.E10",

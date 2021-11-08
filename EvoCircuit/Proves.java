@@ -1,3 +1,5 @@
+package EvoCircuit;
+
 public class Proves {
     public static void main(String[] args) {        
         Porta[] llista = new Porta[13];
@@ -43,7 +45,7 @@ public class Proves {
         System.out.println(circuit.fitness);*/
 
         AlgoritmeEvo pedro = new AlgoritmeEvo();
-        pedro.poblacioAleatoria(100,3,60);
+        pedro.poblacioAleatoria(1000,3,200);
         pedro.busca();
         pedro.poblacio[0].displayOutput();
         pedro.poblacio[0].displayPortes();
@@ -51,5 +53,6 @@ public class Proves {
         pedro.poblacio[70].displayOutput();
         pedro.poblacio[70].displayPortes();
         System.out.println(pedro.poblacio[70].fitness);
+
     }
 }

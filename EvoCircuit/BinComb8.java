@@ -1,3 +1,5 @@
+package EvoCircuit;
+
 public class BinComb8 {
     public static boolean[][] binComb8(int nBits){
         boolean[][] output = new boolean[(int)Math.pow(2,nBits)][nBits];

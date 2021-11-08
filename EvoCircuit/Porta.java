@@ -1,3 +1,5 @@
+package EvoCircuit;
+
 public class Porta {
     
     byte tipo; // 0 AND, 1 OR, 3 NOT
