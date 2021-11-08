@@ -185,7 +185,7 @@ public class AlgoritmeEvo {
         circuit.portes = newPortes;
     }
 
-    private void afegixPorta(Circuit circuit){
+    private Circuit afegixPorta(Circuit circuit){
         int nPorta = this.rand.nextInt(circuit.portes.length + 1);
         int[][] newConnect = new int[circuit.connect.length + 1][2];
         Porta[] newPortes = new Porta[circuit.portes.length + 1];
@@ -202,8 +202,9 @@ public class AlgoritmeEvo {
             newPortes[i] = circuit.portes[j];
             j++;
         }
-        circuit.connect = newConnect;
-        circuit.portes = newPortes;
+        //circuit.connect = newConnect;
+        //circuit.portes = newPortes;
+        return new Circuit(newPortes, newConnect, circuit.nInputs);
     }
 
     public Circuit[] crearPoblacio(int nIndividus, int nInputs, int maxPortes){
