@@ -27,7 +27,7 @@ class Circuit implements Comparable<Circuit> {
                 outputProv[i] = input[i];
             }
             for (int i = this.nInputs; i < outputProv.length; i++) {
-                //System.out.println(i-this.nInputs);
+                //System.out.println(outputProv[this.connect[i-this.nInputs][1]]);
                 outputProv[i] = this.portes[i - this.nInputs].output(outputProv[this.connect[i-this.nInputs][0]],outputProv[this.connect[i-this.nInputs][1]]);
             }
             output[j] = Arrays.copyOfRange(outputProv, this.nInputs, outputProv.length);
@@ -48,8 +48,11 @@ class Circuit implements Comparable<Circuit> {
     }
 
     public void displayPortes(){
+        int i = 0;
         for (Porta porta : this.portes) {
             porta.display();
+            System.out.println("Ve de: " + this.connect[i][0] + " " + this.connect[i][1]);
+            i++;
         }
     }
 
@@ -60,7 +63,7 @@ class Circuit implements Comparable<Circuit> {
         Random rand = new Random();
         
         for (int i = 0; i < nPortes; i++) {
-            this.portes[i] = new Porta(rand.nextInt(nInputs));
+            this.portes[i] = new Porta(rand.nextInt(3));
             this.connect[i][0] = rand.nextInt(i+nInputs);
             this.connect[i][1] = rand.nextInt(i+nInputs);
         }

@@ -3,30 +3,32 @@ package EvoCircuit;
 import java.util.Arrays;
 import java.util.Random;
 import static EvoCircuit.Transposa.transposa;
+import java.math.BigDecimal;
 
 public class AlgoritmeEvo {
     Circuit[] poblacio;
     boolean[][] objectiu = {{false, false, false, true, false, true, true, true},{false,true,true,false,true,false,false,true}};
-    int maxIter = 100;
-    int aproxImmigracio = 20;
+    int maxIter = 10000;
+    int maxPortes;
+    int aproxImmigracio = 1000;
     Random rand = new Random();
-    double probEnllas = 1e-2;
-    double probPorta = 1e-3;
-    double probCanviPorta = 1e-3;
+    BigDecimal probEnllas = new BigDecimal(1e-100);
+    BigDecimal probPorta = new BigDecimal(1e-100);
+    BigDecimal probCanviPorta = new BigDecimal(1e-100);
 
     public void busca(){
         fitness2();
-        display();
+        //display();
         recombinacio();
         mutacio();
         for (int i = 0; i < this.maxIter; i++) {
             fitness2();
             recombinacio();
             mutacio();
-            //immigracio(this.nImmigracio);
+            immigracio();
         }
         fitness2();
-        display();
+        //display();
         //poblacio[0].displayOutput();
     }
 
@@ -79,17 +81,17 @@ public class AlgoritmeEvo {
         int matchDiferentsOutputs;
         int matchPortaIndEstat;
         int matchOutput;
-        int objectiuAssolit;
+        boolean objectiuAssolit;
         for (Circuit individu : this.poblacio) {
             output = transposa(individu.output());
             matchDiferentsOutputs = 0;
             matchOutput = 0;
             matchPortaIndEstat = 0;
-            objectiuAssolit = 0;
+            objectiuAssolit = false;
             for (boolean[] obj : this.objectiu) {
                 jaEsta = false;
                 for (boolean[] outPorta : output) {
-                    if(obj.equals(outPorta)) {
+                    if(Arrays.equals(obj,outPorta)) {
                         matchOutput++;
                         if(!jaEsta){
                             matchDiferentsOutputs++;
@@ -101,9 +103,20 @@ public class AlgoritmeEvo {
                     }
                 }
             }
-            if (matchDiferentsOutputs == this.objectiu.length) objectiuAssolit = 1;
-            individu.fitness = 2*((double)matchOutput/output.length) - ((double)((output.length * output[0].length) - matchPortaIndEstat)/(output.length * output[0].length)) + 100*objectiuAssolit;
-            Arrays.sort(this.poblacio);
+            if (matchDiferentsOutputs == this.objectiu.length) objectiuAssolit = true;
+            //individu.fitness = -((double)(output.length * output[0].length - matchOutput)/output.length) - ((double)((output.length * output[0].length) - matchPortaIndEstat)/(output.length * output[0].length)) + 100*objectiuAssolit;
+            individu.fitness = trauFitness(matchOutput, matchPortaIndEstat, objectiuAssolit, output.length * output[0].length, output.length);
+        }
+        Arrays.sort(this.poblacio);
+    }
+
+    private double trauFitness(int matchOutput, int matchPortaIndEstat, boolean jaEsta, int totalOutputsxEstat, int totalOutputs){
+        if(jaEsta){
+            return 500 - (double)(totalOutputs - matchOutput);
+        } else if (matchOutput > 0) {
+            return 50 - (double)(totalOutputs - matchOutput);
+        } else {
+            return (double)matchPortaIndEstat/(totalOutputsxEstat);
         }
     }
 
@@ -148,20 +161,20 @@ public class AlgoritmeEvo {
                 if(this.rand.nextDouble() < this.probEnllas) this.poblacio[i].connect[j][0] = this.rand.nextInt(j + this.poblacio[0].nInputs);
                 if(this.rand.nextDouble() < this.probEnllas) this.poblacio[i].connect[j][1] = this.rand.nextInt(j + this.poblacio[0].nInputs);
                 if(this.rand.nextDouble() < this.probPorta) this.poblacio[i].portes[j].tipo = (byte)this.rand.nextInt(3);
-                if(this.rand.nextDouble() < this.probCanviPorta) canviPorta(this.poblacio[i]);
+                if(this.rand.nextDouble() < this.probCanviPorta) this.poblacio[i] = canviPorta(this.poblacio[i]);
             }
         }
     }
 
-    private void canviPorta(Circuit circuit) {
-        if (this.rand.nextDouble() < 0.5) {
-            borraPorta(circuit);
+    private Circuit canviPorta(Circuit circuit) {
+        if (this.rand.nextDouble() < 0.5 && circuit.portes.length > 1) {
+            return borraPorta(circuit);
         } else {
-            afegixPorta(circuit);
+            return afegixPorta(circuit);
         }
     }
 
-    private void borraPorta(Circuit circuit){
+    private Circuit borraPorta(Circuit circuit){
         int nPorta = this.rand.nextInt(circuit.portes.length);
         int[][] newConnect = new int[circuit.connect.length - 1][2];
         Porta[] newPortes = new Porta[circuit.portes.length - 1];
@@ -173,16 +186,17 @@ public class AlgoritmeEvo {
                 continue;
             }
             if (despres) {
-                if (circuit.connect[i][0] == nPorta) circuit.connect[i][0]--;
-                if (circuit.connect[i][1] == nPorta) circuit.connect[i][1]--;
+                if (circuit.connect[i][0] >= nPorta + circuit.nInputs) circuit.connect[i][0]--;
+                if (circuit.connect[i][1] >= nPorta + circuit.nInputs) circuit.connect[i][1]--;
             }
             newConnect[j][0] = circuit.connect[i][0];
             newConnect[j][1] = circuit.connect[i][1];
             newPortes[j] = circuit.portes[i];
             j++;
         }
-        circuit.connect = newConnect;
-        circuit.portes = newPortes;
+        /*circuit.connect = newConnect;
+        circuit.portes = newPortes;*/
+        return new Circuit(newPortes, newConnect, circuit.nInputs);
     }
 
     private Circuit afegixPorta(Circuit circuit){
@@ -190,7 +204,7 @@ public class AlgoritmeEvo {
         int[][] newConnect = new int[circuit.connect.length + 1][2];
         Porta[] newPortes = new Porta[circuit.portes.length + 1];
         int j = 0;
-        for(int i = 0; i < circuit.connect.length; i ++){
+        for(int i = 0; i < circuit.connect.length + 1; i ++){
             if (i == nPorta) {
                 newConnect[i][0] = this.rand.nextInt(nPorta + circuit.nInputs);
                 newConnect[i][1] = this.rand.nextInt(nPorta + circuit.nInputs);
@@ -207,8 +221,16 @@ public class AlgoritmeEvo {
         return new Circuit(newPortes, newConnect, circuit.nInputs);
     }
 
+    private void immigracio(){
+        for (int i = this.poblacio.length - this.aproxImmigracio; i < this.poblacio.length; i++){
+            this.poblacio[i] = new Circuit();
+            this.poblacio[i].circuitAleatori(this.rand.nextInt(this.maxPortes - 1) + 1, 3); //S'ha de canviar
+        }
+    }
+
     public Circuit[] crearPoblacio(int nIndividus, int nInputs, int maxPortes){
         Circuit[] poblacio = new Circuit[nIndividus];
+        this.maxPortes = maxPortes;
         for (int i = 0; i < nIndividus; i++) {
             poblacio[i] = new Circuit();
             poblacio[i].circuitAleatori(this.rand.nextInt(maxPortes - 1)+1, nInputs);

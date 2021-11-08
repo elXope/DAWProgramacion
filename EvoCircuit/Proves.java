@@ -21,24 +21,24 @@ public class Proves {
             {1, 2},
             {3, 3},
             {1, 2},
-            {4, 2},//5},
+            {4, 5},
             {1, 2},
             {0, 1},
             {0, 2},
             {0, 6},
             {10, 10},
-            {6, 3},//0
+            {6, 0},//0
             {11, 12},
             {7, 8},
             {14, 9}
         };
 
-        /*Circuit circuit = new Circuit();
-        circuit.circuitAleatori(10, 3);
+       /* Circuit circuit = new Circuit(llista, connect, 3);
+        //circuit.circuitAleatori(10, 3);
         circuit.displayOutput();
-        circuit.displayPortes();*/
+        circuit.displayPortes();
 
-        /*AlgoritmeEvo ebolusio = new AlgoritmeEvo();
+        AlgoritmeEvo ebolusio = new AlgoritmeEvo();
         ebolusio.poblacio = new Circuit[1];
         ebolusio.poblacio[0] = circuit;
         ebolusio.busca();
