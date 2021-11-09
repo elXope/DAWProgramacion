@@ -126,12 +126,22 @@ public class AlgoritmeEvo {
         Circuit p1;
         Circuit p2;
         for (int i = notaDeTall; i < this.poblacio.length-this.aproxImmigracio; i++) {
-            p1 = this.poblacio[this.rand.nextInt(notaDeTall)];
-            p2 = this.poblacio[this.rand.nextInt(notaDeTall)];
+            p1 = escullProg(notaDeTall);//this.poblacio[this.rand.nextInt(notaDeTall)];
+            p2 = escullProg(notaDeTall);//this.poblacio[this.rand.nextInt(notaDeTall)];
             nPortes = (p1.portes.length + p2.portes.length)/2;
             if (p1.connect.length > p2.connect.length) this.poblacio[i] = plena(nPortes,p1,p2);
             else this.poblacio[i] = plena(nPortes,p2,p1);
         }
+    }
+
+    private Circuit escullProg(int notaDeTall){
+        double totalWeight = 0;
+        for (int i = 0; i < notaDeTall; i++){
+            totalWeight += this.poblacio[i].fitness;
+        }
+
+        int idx = 0;
+        for (double r = this.rand.nextDouble() * totalWeight; idx < notaDeTall - 1;) //https://stackoverflow.com/questions/6737283/weighted-randomness-in-java
     }
 
     private Circuit plena (int nPortes, Circuit primer, Circuit segon){
