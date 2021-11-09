@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class AlgoritmeEvo {
     Circuit[] poblacio;
     boolean[][] objectiu = {{false, false, false, true, false, true, true, true},{false,true,true,false,true,false,false,true}};
-    int maxIter = 100000;
+    int maxIter = 1000;
     int maxPortes;
     int aproxImmigracio = 1000;
     Random rand = new Random();
