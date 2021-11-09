@@ -112,9 +112,9 @@ public class AlgoritmeEvo {
 
     private double trauFitness(int matchOutput, int matchPortaIndEstat, boolean jaEsta, int totalOutputsxEstat, int totalOutputs){
         if(jaEsta){
-            return 500 - (double)(totalOutputs - matchOutput);
+            return 5000 - (double)(totalOutputsxEstat - matchPortaIndEstat)/(totalOutputsxEstat);
         } else if (matchOutput > 0) {
-            return 50 - (double)(totalOutputs - matchOutput);
+            return 500 - (double)(totalOutputsxEstat - matchPortaIndEstat)/(totalOutputsxEstat);
         } else {
             return (double)matchPortaIndEstat/(totalOutputsxEstat);
         }
