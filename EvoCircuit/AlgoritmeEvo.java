@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class AlgoritmeEvo {
     Circuit[] poblacio;
     boolean[][] objectiu = {{false, false, false, true, false, true, true, true},{false,true,true,false,true,false,false,true}};
-    int maxIter = 10000;
+    int maxIter = 100000;
     int maxPortes;
     int aproxImmigracio = 1000;
     Random rand = new Random();
@@ -105,7 +105,7 @@ public class AlgoritmeEvo {
             }
             if (matchDiferentsOutputs == this.objectiu.length) objectiuAssolit = true;
             //individu.fitness = -((double)(output.length * output[0].length - matchOutput)/output.length) - ((double)((output.length * output[0].length) - matchPortaIndEstat)/(output.length * output[0].length)) + 100*objectiuAssolit;
-            individu.fitness = trauFitness(matchOutput, matchPortaIndEstat, objectiuAssolit, output.length * output[0].length, output.length);
+            individu.fitness = trauFitness(matchOutput, matchPortaIndEstat, objectiuAssolit, (int)Math.pow(2,individu.nInputs)*individu.portes.length, output.length);
         }
         Arrays.sort(this.poblacio);
     }

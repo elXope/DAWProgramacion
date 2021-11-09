@@ -44,6 +44,8 @@ public class Proves {
         ebolusio.busca();
         System.out.println(circuit.fitness);*/
 
+        long startTime = System.nanoTime();
+
         AlgoritmeEvo pedro = new AlgoritmeEvo();
         pedro.poblacioAleatoria(1000,3,200);
         pedro.busca();
@@ -54,5 +56,7 @@ public class Proves {
         pedro.poblacio[70].displayPortes();
         System.out.println(pedro.poblacio[70].fitness);
 
+        long endTime = System.nanoTime();
+        System.out.println("Tarda " + (double)(endTime-startTime)/(1e9*60));
     }
 }
