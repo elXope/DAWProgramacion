@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta name="author" content="Josep Rubert" />
+        <meta name="NIA" content="10210948" />
+        <meta name="dataEntrega" content="10/11/21" />
+        <meta name="description" content="Pràctica per a l'assignatura Llenguatge de marques del grau superior en Desenvolupament d'aplicacions web en l'IES El Caminàs." />
+        <title>Formulari</title>
+    </head>
+    <body>
+        <h1>Només gent seriosa!</h1>
+        <p>
+            <strong>Açò no és un joc!</strong> Per a assegurar-nos de que estàs disposat a assumir el teu compromís amb la vida de Natanael, apunta el teu nom i un parell de dades més per a estadístiques. 
+        </p>
+        <form action="" method="get">
+            <fieldset>
+                <legend>Formulari</legend>
+                <label for="nom">Nom:</label><br />
+                <input type="text" id="nom" value="" />
+                <input type="submit" name="enviarNom" value="Enviar" />
+                <br />
+                <label for="primerCognom">Primer Cognom:</label><br />
+                <input type="text" id="primerCognom" value="" />
+                <input type="submit" name="enviarPC" value="Enviar" />
+                <br />
+                <label for="segonCognom">Segon Cognom:</label><br />
+                <input type="text" id="segonCognom" value="" />
+                <input type="submit" name="enviarSC" value="Enviar" />
+                <br />
+                <label for="genere">Génere:</label><br />
+                <input type="radio" id="genere" value="persona" /> Persona
+                <br />
+                <label for="DI">Document identificatiu: </label>
+                <select id="DItipo" name="DItipo">
+                    <option value="" selected="selected">- selecciona -</option>
+                    <option value="dni">DNI</option>
+                    <option value="nie">NIE</option>
+                </select>
+                <br />
+                <input type="text" id="DI" value="" />
+                <input type="submit" name="enviarSC" value="Enviar" />
+                <br />
+                <label for="nTargeta">Número de targeta dèbit/crèdit:</label><br />
+                <input type="text" id="nTargeta" value="" maxlength="16" />
+                <input type="submit" name="enviarSC" value="Enviar" />
+                <br />
+                <label for="validaFins">V&#224;lida fins:</label><br />
+                <input type="text" id="validaFins" value="dd/mm" maxlength="5" />
+                <input type="submit" name="enviarSC" value="Enviar" />
+                <br />
+                <label for="codiSeguretat">Codi de seguretat:</label><br />
+                <input type="password" id="codiSeguretat" value="" maxlength="3" />
+                <input type="submit" name="enviarSC" value="Enviar" />
+                <br />
+            </fieldset>
+        </form>
+        <table>
+            <tbody>
+                <tr>
+                    <th><a href="Natanaelv1.html">Enrere</a></th>
+                    <th><a href="Natanaelv1.html">Continua</a></th>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
