@@ -4,7 +4,6 @@
 // Code for: https://youtu.be/AaGK-fj-BAM
 
 function Snake() {
-  import gorila from "../images/gorila.png";
   this.x = 0;
   this.y = 0;
   this.xspeed = 1;
@@ -58,6 +57,7 @@ function Snake() {
     fill(255);
     for (let i = 0; i < this.tail.length; i++) {
       rect(this.tail[i].x, this.tail[i].y, scl, scl);
+      //image(gorila,tail[i].x,tail[i].y);
     }
     rect(this.x, this.y, scl, scl);
   };

@@ -6,9 +6,14 @@
 let s;
 let scl = 20;
 let food;
+let gorila;
+function preload(){
+  gorila = loadImage("./gorila.png")
+}
 
 function setup() {
   createCanvas(600, 600);
+  image(gorila,10,10)
   s = new Snake();
   frameRate(10);
   pickLocation();
