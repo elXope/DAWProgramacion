@@ -43,7 +43,7 @@ public class ProvesClasses {
         System.out.println("32 és primo? " + Primo.esPrimo(32));*/
 
         // PROVES PRIMOS.JAVA
-        // Primos.primos();
+         Primos.primos();
 
         // PROVES MAYOR.JAVA
         
