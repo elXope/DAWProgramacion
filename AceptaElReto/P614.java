@@ -6,9 +6,10 @@ import java.util.Scanner;
 public class P614 {
     public static void main(String[] args) {
         Scanner lec = new Scanner(System.in);
-        ArrayList<Integer> output = new ArrayList<>();
+        ArrayList<Long> output = new ArrayList<>();
         int T, E, ct, ft;
         int[] pos;
+        long out, prov;
         while(true){
             T = lec.nextInt();
             E = lec.nextInt();
@@ -27,7 +28,26 @@ public class P614 {
                 if (pos[ct] > pos[ft]) ft--;
                 else ct++;
             }
-            output.add(calcula(ct, ft, pos));
+            out = calcula(ct, ft, pos);
+            int cont = 1;
+            while(true){
+                prov = calcula(ct + cont, ft + cont, pos);
+                if(prov < out){
+                    out = prov;
+                    if (cont > 0){
+                        cont++;
+                    } else {
+                        cont--;
+                    }
+                }else {
+                    if (cont > 0){
+                        cont = -1;
+                    } else {
+                        break;
+                    }
+                }
+            }
+            output.add(out);
         }
         lec.close();
 
@@ -36,8 +56,8 @@ public class P614 {
         }
     }
 
-    public static int calcula(int ct, int ft, int[] pos){
-        int sum = 0;
+    public static long calcula(int ct, int ft, int[] pos){
+        long sum = 0;
         for(int i = 0; i < ct; i++){
             sum += pos[i] * (ct - i);
         }
