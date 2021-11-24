@@ -11,8 +11,8 @@ public class Test {
         System.out.println(Arrays.toString(prova));*/
         
         // test duplicados
-        int[] prova = {0, 12, 1, 1, 66, 66, 3, 4, 5, 5, 66, 8, 3, 0, 12, 12, 15, 3};// repes: 0, 1, 3, 5, 66
+        /*int[] prova = {0, 12, 1, 1, 66, 66, 3, 4, 5, 5, 66, 8, 3, 0, 12, 12, 15, 3};// repes: 0, 1, 3, 5, 66
         int[] dup = Arreglo.duplicados(prova);
-        System.out.println(Arrays.toString(dup));
+        System.out.println(Arrays.toString(dup));*/
     }
 }
