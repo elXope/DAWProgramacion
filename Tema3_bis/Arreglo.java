@@ -33,27 +33,29 @@ public class Arreglo {
         return output;
     }
 
-    public static int[] eliminarDuplicados(int[] arreglo) { //mhe kedat x aci
-        for (int i = 0; i < arreglo.length; i++){
-            for (int j = i + 1; j < arreglo.length; j++){
-                if (arreglo[i] == arreglo[j]){
-                    
-                }
+    public static int[] eliminarDuplicados(int[] arreglo){
+        int[] copia = Arrays.copyOf(arreglo, arreglo.length);
+        Arrays.sort(copia);
+        int cont = 0;
+        for (int i = 0; i < copia.length - 1; i++){
+            if(copia[i] == copia[i+1]){
+                copia = eliminar(copia,i);
+                i--;
             }
         }
+        return copia;
     }
 
     public static int[] duplicados(int[] arreglo){
-        int[] duplicados = new int[arreglo.length/2];
-        int contDup = 0;
-        for (int i = 0; i < copiaArreglo.length; i++){
-            for (int j = i + 1; j < copiaArreglo.length; j++){
-                if (copiaArreglo[i] == copiaArreglo[j]){
-                    duplicados[contDup] = copiaArreglo[i];
-                    contDup++;;
-                }
+        int[] copia = Arrays.copyOf(arreglo, arreglo.length);
+        Arrays.sort(copia);
+
+        for (int i = 0; i < copia.length - 1; i++){
+            if(copia[i] != copia[i+1]){
+                copia = eliminar(copia,i);
+                i--;
             }
         }
-        return Arrays.copyOf(duplicados,contDup);
+        return eliminarDuplicados(copia);
     }
 }
