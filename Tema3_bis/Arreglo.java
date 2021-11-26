@@ -127,7 +127,7 @@ public class Arreglo {
     public static void rellenaMatriz(int[][] mat, int min, int max){
         for (int i = 0; i < mat.length; i++){
             for (int j = 0; j < mat[0].length; j++){
-                mat[i][j] = (int)Math.round(Math.random()*(max - min) + min);
+                mat[i][j] = (int)Math.round(Math.random()*(max + 0.5 - min - 0.5) + min);
             }
         }
     }
