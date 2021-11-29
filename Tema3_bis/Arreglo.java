@@ -199,7 +199,7 @@ public class Arreglo {
 
     public static void pedirEntrada(int[] siguienteEntrada, Scanner lector){
         System.out.print("Introduce fila (letra): ");
-        String fila = lector.nextLine();
+        String fila = lector.next();
         siguienteEntrada[0] = fila.charAt(0)%'A';
         System.out.print("\nIntroduce columna (numero): ");
         siguienteEntrada[1] = lector.nextInt() - 1;
