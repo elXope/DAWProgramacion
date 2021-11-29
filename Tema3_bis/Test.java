@@ -43,8 +43,20 @@ public class Test {
         System.out.println(Arrays.toString(prova)); */
 
         // test rellenaMatriz
-        int[][] mat = new int[10][10];
+        /* int[][] mat = new int[10][10];
         Arreglo.rellenaMatriz(mat, 0, 3);
         Arreglo.printMatriz(mat);
+        Arreglo.histograma(mat, 4); */
+
+        // test tablero
+        /* int[][] mat = new int[8][8];
+        Arreglo.rellenaMatriz(mat, 0, 3);
+        Arreglo.printMatriz(mat);
+        Arreglo.printTablero(mat, true);
+        Arreglo.printTablero(mat, false); */
+
+        // test hundirLaFlota
+        // System.out.println(Arreglo.randomRange(0, 7));
+        Arreglo.hundirLaFlota();
     }
 }

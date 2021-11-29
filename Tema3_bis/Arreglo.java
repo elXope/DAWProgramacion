@@ -127,8 +127,98 @@ public class Arreglo {
     public static void rellenaMatriz(int[][] mat, int min, int max){
         for (int i = 0; i < mat.length; i++){
             for (int j = 0; j < mat[0].length; j++){
-                mat[i][j] = (int)Math.round(Math.random()*(max + 0.5 - min - 0.5) + min);
+                mat[i][j] = (int)(Math.random()*(max + 1 - min) + min);
             }
+        }
+    }
+
+    public static void printTablero(int[][] mat, boolean muestraBarcos){
+        char fila = 'A';
+        for (int i = 0; i < mat.length + 1; i++){
+            if (i == 0) System.out.print("  ");
+            else System.out.print(fila++ + " ");
+            for (int j = 0; j < mat[0].length; j++){
+                if (i == 0) System.out.print((j + 1) + " ");
+                else {
+                    switch (mat[i - 1][j]){
+                        case 1:
+                            if (muestraBarcos) {
+                                System.out.print("+ ");
+                                break;
+                            }
+                        case 0:
+                            System.out.print("· ");
+                            break;
+                        case 2:
+                            System.out.print("0 ");
+                            break;
+                        case 3:
+                            System.out.print("X ");
+                            break;
+                    }
+                }
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static void hundirLaFlota(){
+        int[][] tablero = new int[8][8];
+        meterBarcos(tablero);
+        int barcosDescubiertos = 0;
+        int[] siguienteEntrada = new int[2];
+        Scanner lector = new Scanner(System.in);
+
+        while(barcosDescubiertos < 10){
+            printTablero(tablero, false);
+            pedirEntrada(siguienteEntrada, lector);
+
+            if (tablero[siguienteEntrada[0]][siguienteEntrada[1]] == 1){
+                tablero[siguienteEntrada[0]][siguienteEntrada[1]] = 3;
+                barcosDescubiertos++;
+            } else if (tablero[siguienteEntrada[0]][siguienteEntrada[1]] == 0){
+                tablero[siguienteEntrada[0]][siguienteEntrada[1]] = 2;
+            }
+        }
+        lector.close();
+    }
+
+    public static void meterBarcos(int[][] tablero){
+        int barcos = 0;
+        int fila, columna;
+        while (barcos < 10) {
+            fila = randomRange(0, 7);
+            columna = randomRange(0, 7);
+            if (tablero[fila][columna] == 0){
+                tablero[fila][columna] = 1;
+                barcos++;
+            }
+        }
+    }
+
+    public static void pedirEntrada(int[] siguienteEntrada, Scanner lector){
+        System.out.print("Introduce fila (letra): ");
+        String fila = lector.nextLine();
+        siguienteEntrada[0] = fila.charAt(0)%'A';
+        System.out.print("\nIntroduce columna (numero): ");
+        siguienteEntrada[1] = lector.nextInt() - 1;
+    }
+
+    public static int randomRange(int min, int max){
+        return (int)(Math.random()*(max + 1 - min) + min);
+    }
+
+    public static void histograma(int[][] mat, int nBins){
+        int cont;
+        for (int k = 0; k < nBins; k++){
+            cont = 0;
+            for (int i = 0; i < mat.length; i++){
+                for (int j = 0; j < mat[0].length; j++){
+                    if (mat[i][j] == k) cont++;
+                }
+            }
+            System.out.println(k + ": " + cont);
         }
     }
 
