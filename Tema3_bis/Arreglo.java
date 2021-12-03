@@ -201,7 +201,7 @@ public class Arreglo {
         System.out.print("Introduce fila (letra): ");
         String fila = lector.next();
         siguienteEntrada[0] = fila.charAt(0)%'A';
-        System.out.print("\nIntroduce columna (numero): ");
+        System.out.print("Introduce columna (numero): ");
         siguienteEntrada[1] = lector.nextInt() - 1;
     }
 
