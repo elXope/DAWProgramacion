@@ -21,9 +21,14 @@ public class Exercicis {
         System.out.println(concat(cadena1, cadena2)); */
 
         // Ej4
-        String cadena1 = "Buenos dias Juan Luis";
+        /* String cadena1 = "Buenos dias Juan Luis";
         String cadena2 = "os di";
-        System.out.println(contiene(cadena1, cadena2));
+        System.out.println(contiene(cadena1, cadena2)); */
+
+        // Ej5
+        String cadena1 = "La millor varietat de taronja és la clemenula.";
+        String cadena2 = "nula.";
+        System.out.println(ends(cadena1, cadena2));
     }
 
     public static int comparar(String cadena1, String cadena2) {
@@ -46,5 +51,9 @@ public class Exercicis {
 
     public static boolean contiene(String cadena1, String cadena2) {
         return cadena1.contains(cadena2);
+    }
+
+    public static boolean ends(String cadena1, String cadena2) {
+        return cadena1.endsWith(cadena2);
     }
 }
