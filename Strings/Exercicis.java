@@ -26,9 +26,19 @@ public class Exercicis {
         System.out.println(contiene(cadena1, cadena2)); */
 
         // Ej5
-        String cadena1 = "La millor varietat de taronja és la clemenula.";
+        /* String cadena1 = "La millor varietat de taronja és la clemenula.";
         String cadena2 = "nula.";
-        System.out.println(ends(cadena1, cadena2));
+        System.out.println(ends(cadena1, cadena2)); */
+
+        // Ej6
+        /* String cadena = "Buenas noches señora, BUENAS NOCHES SEÑORA";
+        System.out.println(reemplazar(cadena, ' ', 'a')); */
+
+        // Ej7 & Ej8
+        /* String cadena = "La cultura és la unió d'un marc de comprensió i un marc de pràctica ... marc";
+        String subCadena = "marc";
+        System.out.println(indexOf(cadena, subCadena));
+        System.out.println(lastIndexOf(cadena, subCadena)); */
     }
 
     public static int comparar(String cadena1, String cadena2) {
@@ -55,5 +65,17 @@ public class Exercicis {
 
     public static boolean ends(String cadena1, String cadena2) {
         return cadena1.endsWith(cadena2);
+    }
+
+    public static String reemplazar(String cadena, char original, char nuevo) {
+        return cadena.replace(original, nuevo);
+    }
+
+    public static int indexOf(String cadena, String subCadena) {
+        return cadena.indexOf(subCadena);
+    }
+
+    public static int lastIndexOf(String cadena, String subCadena) {
+        return cadena.lastIndexOf(subCadena);
     }
 }
