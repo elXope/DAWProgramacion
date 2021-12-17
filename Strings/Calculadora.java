@@ -4,24 +4,34 @@ import java.util.Scanner;
 
 public class Calculadora {
     String input;
-    char tipoOperacio;
+    char tipoOperacio = '_';
     String[] numeros;
     double ans;
     Scanner lector = new Scanner(System.in);
 
     public static void main(String[] args) {
         Calculadora calc = new Calculadora();
+        calc.start();
+        calc.close();
+    }
+
+    void start() {
         while(true){
-            calc.lligEntrada();
-            if(calc.input.equalsIgnoreCase("fin")) break;
-            calc.extrauInfo();
-            if(!calc.validar()) {
+            System.out.println("*****************************");
+            this.lligEntrada();
+            if(this.input.equalsIgnoreCase("fin")) break;
+            this.extrauInfo();
+            if(!this.validar()) {
                 System.out.println("Operació no vàlida.");
                 continue;
             }
-            calc.fesOperacio();
+            this.fesOperacio();
+            this.neteja();
         }
-        calc.lector.close();
+    }
+
+    void close() {
+        this.lector.close();
     }
 
     private void lligEntrada() {
@@ -80,5 +90,10 @@ public class Calculadora {
             this.ans = Double.parseDouble(this.numeros[0]) / Double.parseDouble(this.numeros[1]);
         }
         System.out.println("= " + this.ans);
+    }
+
+    private void neteja() {
+        this.input = "";
+        this.tipoOperacio = '_';
     }
 }
