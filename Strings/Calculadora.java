@@ -61,7 +61,7 @@ public class Calculadora {
 
     private boolean validar() {
         if (this.tipoOperacio != '+' && this.tipoOperacio != '-' && this.tipoOperacio != '*' && this.tipoOperacio != '/') return false;
-
+        if (this.numeros.length != 2) return false;
         if (!validarNumero(this.numeros[0])) return false;
         if (!validarNumero(this.numeros[1])) return false;
 
