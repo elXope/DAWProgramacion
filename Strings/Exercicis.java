@@ -74,8 +74,13 @@ public class Exercicis {
         System.out.println(invertir(cadena)); */
 
         //Ej17
-        String cadena = "Organització Terrorista de America del Nord";
-        System.out.println(siglas(cadena));
+        /* String cadena = "Organització Terrorista de America del Nord";
+        System.out.println(siglas(cadena)); */
+
+        //Ej18
+        String palabra1 = "amor";
+        String palabra2 = "sabadu";
+        System.out.println(alfabetica(palabra1) + " " + alfabetica(palabra2));
     }
 
     public static int comparar(String cadena1, String cadena2) {
@@ -213,5 +218,13 @@ public class Exercicis {
             }
         }
         return output;
+    }
+
+    public static boolean alfabetica(String cadena) {
+        char letraMasGrande = 'a';
+        for (int i = 0; i <= cadena.length(); i++){
+            if (cadena.IgnoreCase)
+        }
+
     }
 }
