@@ -24,7 +24,7 @@ public class ChorriChat {
         "adios",
         "bye"
     };
-    final String despedida = "Ha sido un placer";
+    final String despedida = "Ha sido un placer, bebé";
     String respuestaUsuario = "";
     Scanner lector = new Scanner(System.in);
 
