@@ -35,8 +35,12 @@ public class ChorriChat {
 
     public void chat() {
         inicializar();
-        esperarSaludo();
+        if (!esperarSaludo()) {
+            this.lector.close();
+            return;
+        }
         conversacion();
+        this.lector.close();
     }
 
     private void saludar() {
@@ -59,17 +63,17 @@ public class ChorriChat {
     private void leerRespuesta() {
         System.out.print(this.usuario);
         this.respuestaUsuario = this.lector.nextLine();
-        comprobarDespedida();
     }
 
-    private void comprobarDespedida() {
+    private boolean comprobarDespedida() {
         for (String despedidaUsuario : this.despedidasUsuario) {
             if (despedidaUsuario.equalsIgnoreCase(this.respuestaUsuario)) {
                 System.out.println(this.chorri + this.despedida);
                 this.lector.close();
-                System.exit(0);
+                return true;
             }
         }
+        return false;
     }
 
     private boolean comprobarSaludo() {
@@ -82,10 +86,11 @@ public class ChorriChat {
         return false;
     }
 
-    private void esperarSaludo() {
+    private boolean esperarSaludo() {
         while(true) {
             leerRespuesta();
-            if (comprobarSaludo()) break;
+            if (comprobarDespedida()) return false;
+            if (comprobarSaludo()) return true;
             reprender();
         }
     }
@@ -93,6 +98,7 @@ public class ChorriChat {
     private void conversacion() {
         while(true) {
             leerRespuesta();
+            if (comprobarDespedida()) break;
             if (comprobarSaludo()) continue;
             conversar();
         }
