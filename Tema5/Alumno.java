@@ -26,11 +26,11 @@ public class Alumno {
         System.out.println(this.nombre + " levanta la mano");
     }
 
-    public void imprimirInforme() {
+    public static void imprimirInforme() {
         System.out.println("Total de alumnos: " + totalAlumnos);
     }
 
-    public void imprimirInformeAlumnos(Alumno[] alumnos) {
+    public static void imprimirInformeAlumnos(Alumno[] alumnos) {
         System.out.println("Nombre\tGrupo");
         for (Alumno alumno : alumnos) {
             System.out.println(alumno.nombre + "\t" + alumno.grupo);
