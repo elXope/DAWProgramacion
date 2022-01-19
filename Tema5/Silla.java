@@ -1,6 +1,6 @@
 package Tema5;
 
-import java.awt.*;
+import java.awt.Point;
 
 public class Silla {
     /*
@@ -100,5 +100,16 @@ public class Silla {
 
     public Point getCord() {
         return this.cord;
+    }
+
+    @Override
+    public String toString() {
+        return "==============================================" +
+                "\nMaterial:\t" + this.material +
+                "\nColor:\t" + this.color +
+                "\nNum. Patas:\t" + this.nPatas +
+                "\nComodidad:\t" + this.comodidad +
+                "\nRespaldo:\t" + this.respaldo +
+                "\nCordenadas:\t" + this.cord.toString();
     }
 }
