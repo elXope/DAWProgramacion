@@ -1,6 +1,7 @@
 package Tema5;
 
 import java.awt.Point;
+import java.util.Random;
 
 public class Silla {
     /*
@@ -9,6 +10,23 @@ public class Silla {
     Todos los atributos tienen que ser privados, pero se tienen que poder modificar y acceder a su valor.
     En la classe test creamos 100 sillas con distintas posiciones y materiales.
      */
+    // presets
+    String[] materiales = {
+            "cuero",
+            "sintetico",
+            "esparto",
+            "cañamo"
+    };
+
+    String[] colores = {
+            "marron",
+            "roja",
+            "azul",
+            "amarilla"
+    };
+
+    final Random rand = new Random();
+
     private boolean respaldo;
     private byte nPatas;
     private byte comodidad;
@@ -16,7 +34,14 @@ public class Silla {
     private String color;
     private Point cord;
 
-    public Silla() {}
+    public Silla() {
+        this.respaldo = rand.nextBoolean();
+        this.nPatas = (byte)(rand.nextInt(7) +1);
+        this.comodidad = (byte)(rand.nextInt(11));
+        this.material = this.materiales[rand.nextInt(this.materiales.length)];
+        this.color = this.colores[rand.nextInt(this.colores.length)];
+        this.cord = new Point(rand.nextInt(101), rand.nextInt(101));
+    }
 
     public Silla(String material, String color, int nPatas, int comodidad, boolean respaldo, int x, int y) {
         this.material = material;
@@ -54,6 +79,7 @@ public class Silla {
         this.cord = new Point(cord.x, cord.y);
     }
 
+    // Setters
     public void setMaterial(String material) {
         this.material = material;
     }
@@ -78,6 +104,7 @@ public class Silla {
         this.cord = new Point(x, y);
     }
 
+    // Getters
     public String getMaterial() {
         return this.material;
     }
