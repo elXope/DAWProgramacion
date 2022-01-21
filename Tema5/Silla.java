@@ -11,14 +11,14 @@ public class Silla {
     En la classe test creamos 100 sillas con distintas posiciones y materiales.
      */
     // presets
-    String[] materiales = {
+    final String[] materiales = {
             "cuero",
             "sintetico",
             "esparto",
             "cañamo"
     };
 
-    String[] colores = {
+    final String[] colores = {
             "marron",
             "roja",
             "azul",
@@ -137,6 +137,6 @@ public class Silla {
                 "\nNum. Patas:\t" + this.nPatas +
                 "\nComodidad:\t" + this.comodidad +
                 "\nRespaldo:\t" + this.respaldo +
-                "\nCordenadas:\t" + this.cord.toString();
+                "\nCordenadas:\t(" + this.cord.getX() + ", " + this.cord.getY() + ")";
     }
 }
