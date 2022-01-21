@@ -11,19 +11,28 @@ public class Silla {
     En la classe test creamos 100 sillas con distintas posiciones y materiales.
      */
     // presets
-    final String[] materiales = {
+    final String[] MATERIALES = {
             "cuero",
             "sintetico",
             "esparto",
             "cañamo"
     };
 
-    final String[] colores = {
+    final String[] COLORES = {
             "marron",
             "roja",
             "azul",
             "amarilla"
     };
+
+    final int MAX_PATAS = 6;
+    final int MIN_PATAS = 6;
+    final int MAX_COMODIDAD = 10;
+    final int MIN_COMODIDAD = 0;
+    final int MAX_X = 100;
+    final int MIN_X = 0;
+    final int MAX_Y = 100;
+    final int MIN_Y = 0;
 
     final Random rand = new Random();
 
@@ -36,11 +45,11 @@ public class Silla {
 
     public Silla() {
         this.respaldo = rand.nextBoolean();
-        this.nPatas = (byte)(rand.nextInt(7) +1);
-        this.comodidad = (byte)(rand.nextInt(11));
-        this.material = this.materiales[rand.nextInt(this.materiales.length)];
-        this.color = this.colores[rand.nextInt(this.colores.length)];
-        this.cord = new Point(rand.nextInt(101), rand.nextInt(101));
+        this.nPatas = (byte)randomRangeInt(1,6);
+        this.comodidad = (byte)randomRangeInt(0,10);
+        this.material = this.MATERIALES[rand.nextInt(this.MATERIALES.length)];
+        this.color = this.COLORES[rand.nextInt(this.COLORES.length)];
+        this.cord = new Point(randomRangeInt(0,100), randomRangeInt(0,100));
     }
 
     public Silla(String material, String color, int nPatas, int comodidad, boolean respaldo, int x, int y) {
@@ -127,6 +136,10 @@ public class Silla {
 
     public Point getCord() {
         return this.cord;
+    }
+
+    private int randomRangeInt(int min, int max) {
+        return rand.nextInt(max + 1) + min;
     }
 
     @Override
