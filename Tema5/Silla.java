@@ -11,30 +11,30 @@ public class Silla {
     En la classe test creamos 100 sillas con distintas posiciones y materiales.
      */
     // presets
-    final String[] MATERIALES = {
+    private static final String[] MATERIALES = {
             "cuero",
             "sintetico",
             "esparto",
             "cañamo"
     };
 
-    final String[] COLORES = {
+    private static final String[] COLORES = {
             "marron",
             "roja",
             "azul",
             "amarilla"
     };
 
-    final int MAX_PATAS = 6;
-    final int MIN_PATAS = 6;
-    final int MAX_COMODIDAD = 10;
-    final int MIN_COMODIDAD = 0;
-    final int MAX_X = 100;
-    final int MIN_X = 0;
-    final int MAX_Y = 100;
-    final int MIN_Y = 0;
+    private static final int MAX_PATAS = 6;
+    private static final int MIN_PATAS = 6;
+    private static final int MAX_COMODIDAD = 10;
+    private static final int MIN_COMODIDAD = 0;
+    private static final int MAX_X = 100;
+    private static final int MIN_X = 0;
+    private static final int MAX_Y = 100;
+    private static final int MIN_Y = 0;
 
-    final Random rand = new Random();
+    private static final Random rand = new Random();
 
     private boolean respaldo;
     private byte nPatas;
