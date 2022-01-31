@@ -16,6 +16,5 @@ class Codigos_de_barrasTest {
         cad = "2" + cad;
         String exp13 = "0000222222222";
         assertEquals(exp13, Codigos_de_barras.rellena(cad, 13));
-
     }
 }
