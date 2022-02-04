@@ -10,6 +10,14 @@ public class Teclado {
     private String idioma;
     private String formato;
 
+    public Teclado() {
+        this.color = "gris";
+        this.nTeclas = 22;
+        this.conectividad = "cable";
+        this.idioma = "en";
+        this.formato = "extendido";
+    }
+
     public Teclado(String color, int nTeclas, String conectividad, String idioma, String formato) {
         this.color = color;
         this.nTeclas = nTeclas;
