@@ -13,9 +13,11 @@ public class Teclado {
     public Teclado(String color, int nTeclas, String conectividad, String idioma, String formato) {
         this.color = color;
         this.nTeclas = nTeclas;
-        setConectividad(conectividad);
-        setIdioma(idioma);
-        setFormato(formato);
+        Scanner lector = new Scanner(System.in);
+        setConectividad(conectividad, lector);
+        setIdioma(idioma, lector);
+        setFormato(formato, lector);
+        lector.close();
     }
 
     public String getColor() {
@@ -38,36 +40,27 @@ public class Teclado {
         return formato;
     }
 
-    private void setConectividad(String conectividad) {
-        Scanner lector = new Scanner(System.in);
-        while (!conectividad.equalsIgnoreCase("inalambrico") || !conectividad.equalsIgnoreCase("cable")) {
-            System.out.println("Introduce una de las dos opciones validas (inalambrico / cable):");
+    private void setConectividad(String conectividad, Scanner lector) {
+        while (!(conectividad.equalsIgnoreCase("inalambrico") || conectividad.equalsIgnoreCase("cable"))) {
+            System.out.println("Introduce una de las dos opciones de conectividad validas (inalambrico / cable):");
             conectividad = lector.nextLine();
-            lector.nextLine();
         }
-        lector.close();
         this.conectividad = conectividad;
     }
 
-    private void setIdioma(String idioma) {
-        Scanner lector = new Scanner(System.in);
+    private void setIdioma(String idioma, Scanner lector) {
         while(idioma.length() != 2) {
             System.out.println("Introduce un codigo de idioma valido (maximo 2 letras):");
             idioma = lector.nextLine();
-            lector.nextLine();
         }
-        lector.close();
         this.idioma = idioma;
     }
 
-    private void setFormato(String formato) {
-        Scanner lector = new Scanner(System.in);
-        while (!formato.equalsIgnoreCase("inalambrico") || !formato.equalsIgnoreCase("cable")) {
-            System.out.println("Introduce una de las dos opciones validas (compacto / extendido):");
+    private void setFormato(String formato, Scanner lector) {
+        while (!(formato.equalsIgnoreCase("compacto") || formato.equalsIgnoreCase("extendido"))) {
+            System.out.println("Introduce una de las dos opciones de formato validas (compacto / extendido):");
             formato = lector.nextLine();
-            lector.nextLine();
         }
-        lector.close();
         this.formato = formato;
     }
 }
