@@ -57,17 +57,15 @@ public class MailClient
      */
     public void sendMailItem(String to, String asunto, String message)
     {
-        String[] destinatarios = to.split(";");
-        for (String destinatario : destinatarios) {
+        for (String destinatario : to.split(";")) {
             MailItem item = new MailItem(user, destinatario, asunto, message);
             server.post(item);
         }
     }
 
     public void forwardLastMailItem (String to) {
-        String[] destinatarios = to.split(";");
-        for (String destinatario : destinatarios) {
-            MailItem item = new MailItem(user, destinatario, this.lastMailRecived.getAsunto(), this.lastMailRecived.getMessage());
+        for (String destinatario : to.split(";")) {
+            MailItem item = new MailItem(this.lastMailRecived.getFrom(), destinatario, this.lastMailRecived.getAsunto(), this.lastMailRecived.getMessage());
             server.post(item);
         }
     }
