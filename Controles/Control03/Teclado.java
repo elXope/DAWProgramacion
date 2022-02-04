@@ -4,18 +4,22 @@ import java.util.Scanner;
 
 public class Teclado {
 
-    private String color;
-    private int nTeclas;
+    // Atributos
+    private final String color;
+    private final int nTeclas;
     private String conectividad;
     private String idioma;
     private String formato;
+    private static int nTeclados = 0;
 
+    // Constructores
     public Teclado() {
         this.color = "gris";
         this.nTeclas = 22;
         this.conectividad = "cable";
         this.idioma = "en";
         this.formato = "extendido";
+        tecladoNuevo();
     }
 
     public Teclado(String color, int nTeclas, String conectividad, String idioma, String formato) {
@@ -26,8 +30,10 @@ public class Teclado {
         setIdioma(idioma, lector);
         setFormato(formato, lector);
         lector.close();
+        tecladoNuevo();
     }
 
+    // Getters
     public String getColor() {
         return color;
     }
@@ -48,6 +54,7 @@ public class Teclado {
         return formato;
     }
 
+    // Setters
     private void setConectividad(String conectividad, Scanner lector) {
         while (!(conectividad.equalsIgnoreCase("inalambrico") || conectividad.equalsIgnoreCase("cable"))) {
             System.out.println("Introduce una de las dos opciones de conectividad validas (inalambrico / cable):");
@@ -70,5 +77,14 @@ public class Teclado {
             formato = lector.nextLine();
         }
         this.formato = formato;
+    }
+
+    // Static
+    public static int getnTeclados() {
+        return nTeclados;
+    }
+
+    private static void tecladoNuevo() {
+        nTeclados++;
     }
 }
