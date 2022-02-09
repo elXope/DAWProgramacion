@@ -51,6 +51,8 @@ class MusicOrganizerTest {
         test.addFile("Como un vagabundo");
         test.addFile("Mi gran noche");
         test.addFile("La santa");
+        test.addFile("un bolero en Berlin");
+        test.addFile("Tenemos universidad");
         test.listFile(3);
         test.listFile(0);
         test.listFile(1);
@@ -58,5 +60,7 @@ class MusicOrganizerTest {
         test.checkIndex(-1);
         test.checkIndex(1);
         test.checkIndex(3);
+        test.listMatching("un");
+        test.listMatching("australopitecus");
     }
 }

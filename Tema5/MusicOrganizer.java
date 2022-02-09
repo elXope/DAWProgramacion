@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * A class to hold details of audio files.
  *
- * @author David J. Barnes and Michael KÃ¶lling
+ * @author David J. Barnes and Michael Kölling
  * @version 2016.02.29
  */
 public class MusicOrganizer
@@ -62,6 +62,35 @@ public class MusicOrganizer
             String filename = files.get(index);
             System.out.println(filename);
         }
+    }
+
+    public void listAllFiles() {
+        for (String filename : this.files) {
+            System.out.println(filename);
+        }
+    }
+
+    public void listMatching(String match) {
+        int contador = 0;
+        for (String filename : this.files) {
+            if (filename.contains(match)) {
+                System.out.println(filename);
+                contador++;
+            }
+        }
+        if (contador == 0) System.out.println("No se ha encontrado ninguna coincidencia con " + match + ".");
+    }
+
+    public void playMatching(String match) {
+        int contador = 0;
+        for (String filename : this.files) {
+            if (filename.contains(match)) {
+                System.out.println(filename);
+                player.playSample(filename);
+                contador++;
+            }
+        }
+        if (contador == 0) System.out.println("No se ha encontrado ninguna coincidencia con " + match + ".");
     }
 
     /**
