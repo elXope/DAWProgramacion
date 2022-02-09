@@ -55,5 +55,8 @@ class MusicOrganizerTest {
         test.listFile(0);
         test.listFile(1);
         test.listFile(2);
+        test.checkIndex(-1);
+        test.checkIndex(1);
+        test.checkIndex(3);
     }
 }

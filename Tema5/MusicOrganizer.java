@@ -41,7 +41,7 @@ public class MusicOrganizer
 
     public void checkIndex (int index) {
         if (index < 0 || index >= files.size()) {
-            System.out.println("Los indices de la lista van del " + 0 + " al " + (this.files.size() - 1) + ".");
+            System.out.println("Los indices de la lista van del 0 al " + (this.files.size() - 1) + ".");
         }
     }
 
