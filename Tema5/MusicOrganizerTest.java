@@ -63,4 +63,17 @@ class MusicOrganizerTest {
         test.listMatching("un");
         test.listMatching("australopitecus");
     }
+
+    @Test
+    void findFirst() {
+        MusicOrganizer test = new MusicOrganizer();
+        test.addFile("Como un vagabundo");
+        test.addFile("Mi gran noche");
+        test.addFile("La santa");
+        test.addFile("un bolero en Berlin");
+        test.addFile("Tenemos universidad");
+        assertEquals(0,test.findFirst("un"));
+        assertEquals(2,test.findFirst("santa"));
+        assertEquals(-1,test.findFirst("sabadu"));
+    }
 }

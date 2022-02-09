@@ -70,29 +70,6 @@ public class MusicOrganizer
         }
     }
 
-    public void listMatching(String match) {
-        int contador = 0;
-        for (String filename : this.files) {
-            if (filename.contains(match)) {
-                System.out.println(filename);
-                contador++;
-            }
-        }
-        if (contador == 0) System.out.println("No se ha encontrado ninguna coincidencia con " + match + ".");
-    }
-
-    public void playMatching(String match) {
-        int contador = 0;
-        for (String filename : this.files) {
-            if (filename.contains(match)) {
-                System.out.println(filename);
-                player.playSample(filename);
-                contador++;
-            }
-        }
-        if (contador == 0) System.out.println("No se ha encontrado ninguna coincidencia con " + match + ".");
-    }
-
     /**
      * Remove a file from the collection.
      * @param index The index of the file to be removed.
@@ -121,5 +98,47 @@ public class MusicOrganizer
     public void stopPlaying()
     {
         player.stop();
+    }
+
+    public ArrayList<String> getMatching(String match) {
+        ArrayList<String> matching = new ArrayList<>();
+        for (String filename : this.files) {
+            if (filename.contains(match)) matching.add(filename);
+        }
+        return matching;
+    }
+
+    public void listMatching(String match) {
+        ArrayList<String> matching = this.getMatching(match);
+        if (matching.size() == 0) System.out.println("No hay coincidencias con " + match + ".");
+        else System.out.println(matching);
+    }
+
+    public void playMatching(String match) {
+        ArrayList<String> matching = this.getMatching(match);
+        if (matching.size() == 0) System.out.println("No hay coincidencias con " + match + ".");
+        else {
+            for (String filename : matching) {
+                System.out.println(filename);
+                player.playSample(filename);
+            }
+        }
+    }
+
+    public int findFirst(String match) {
+        ArrayList<String> copia = new ArrayList<>();
+        copia.addAll(files);
+        int contador = 0;
+        boolean matchFound = false;
+        while (copia.size() > 0) {
+            if (copia.get(0).contains(match)) {
+                matchFound = true;
+                break;
+            }
+            contador++;
+            copia.remove(0);
+        }
+        if (matchFound) return contador;
+        else return -1;
     }
 }
