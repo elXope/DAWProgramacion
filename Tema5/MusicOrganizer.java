@@ -12,6 +12,8 @@ public class MusicOrganizer
 {
     // An ArrayList for storing the file names of music files.
     private ArrayList<String> files;
+    // A player for the music files.
+    private MusicPlayer player;
 
     /**
      * Create a MusicOrganizer
@@ -19,6 +21,7 @@ public class MusicOrganizer
     public MusicOrganizer()
     {
         files = new ArrayList<>();
+        player = new MusicPlayer();
     }
 
     /**
@@ -70,5 +73,24 @@ public class MusicOrganizer
         if(this.isValidIndex(index)) {
             files.remove(index);
         }
+    }
+
+    /**
+     * Start playing a file in the collection.
+     * Use stopPlaying() to stop it playing.
+     * @param index The index of the file to be played.
+     */
+    public void startPlaying(int index)
+    {
+        String filename = files.get(index);
+        player.startPlaying(filename);
+    }
+
+    /**
+     * Stop the player.
+     */
+    public void stopPlaying()
+    {
+        player.stop();
     }
 }
