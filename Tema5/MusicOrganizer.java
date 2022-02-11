@@ -138,7 +138,11 @@ public class MusicOrganizer
             contador++;
             copia.remove(0);
         }
-        if (matchFound) return contador;
-        else return -1;
+        if (matchFound) {
+            return contador;
+        }
+        else {
+            return -1;
+        }
     }
 }
