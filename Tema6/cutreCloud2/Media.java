@@ -67,10 +67,10 @@ public class Media {
     private boolean usuarioEmailValido(String email) {
         for (Usuario usuario : Usuario.getListaUsuarios()) {
             if (usuario.getEmail().equals(email)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public static void eliminarMedia(String nombre) {
@@ -86,6 +86,23 @@ public class Media {
         int i = 0;
         while (i < listaMedia.size()) {
             if (listaMedia.get(i).getTipo() == tipo) {
+                listaMedia.remove(i);
+            } else {
+                i++;
+            }
+        }
+    }
+
+    public static void actualizarMediaUsuario() {
+        int i = 0;
+        while (i < listaMedia.size()) {
+            int recuento = 0;
+            for (int j = 0; j < Usuario.getListaUsuarios().size(); j++) {
+                if (listaMedia.get(i).getUsuario().equals(Usuario.getListaUsuarios().get(j).getEmail())){
+                    recuento++;
+                }
+            }
+            if (recuento == 0) {
                 listaMedia.remove(i);
             } else {
                 i++;

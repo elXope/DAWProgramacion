@@ -43,4 +43,20 @@ public class Usuario {
         }
         return true;
     }
+
+    public static void eliminarUsuarioXEmail(String email) {
+        listaUsuarios.removeIf(usuario -> usuario.email.equals(email));
+        Media.actualizarMediaUsuario();
+    }
+
+    public static void eliminarUsuarioXDominio(String dominio) {
+        listaUsuarios.removeIf(usuario -> usuario.email.split("@")[1].equals(dominio.split("@")[1]));
+        Media.actualizarMediaUsuario();
+    }
 }
+
+/**
+ * Interfaz que se llama ParserXML: tiene que haber un metodo en las clases que se llame generateXML()
+ * En la clase usuario tendremos que crear un metodo que se llame generateXML(), que tiene que devolver un string del xml para los objetos
+ * de dicha clase. Para la clase Media lo mismo.
+ */

@@ -58,9 +58,32 @@ class MediaTest {
         Media media12 = new Media("imagen", new Contenido(), MediaType.IMAGEN, "mari@gmail.com");
         Media media13 = new Media("audio", new Contenido(), MediaType.AUDIO, "pepe@gmail.com");
         Media media14 = new Media("video", new Contenido(), MediaType.VIDEO, "finolis@gmail.com");
+        assertSame(media12,Media.getListaMedia().get(0));
+        assertSame(media13,Media.getListaMedia().get(1));
+        assertSame(media14,Media.getListaMedia().get(2));
+        Media.eliminarMedia("audio");
+        assertSame(media12, Media.getListaMedia().get(0));
+        assertSame(media14, Media.getListaMedia().get(1));
     }
 
     @Test
     void eliminarTipoMedia() {
+        Media media12 = new Media("imagen", new Contenido(), MediaType.IMAGEN, "mari@gmail.com");
+        Media media13 = new Media("audio", new Contenido(), MediaType.AUDIO, "pepe@gmail.com");
+        Media media14 = new Media("video", new Contenido(), MediaType.VIDEO, "finolis@gmail.com");
+        Media media15 = new Media("imagen2", new Contenido(), MediaType.IMAGEN, "mari@gmail.com");
+        Media media16 = new Media("audio2", new Contenido(), MediaType.AUDIO, "pepe@gmail.com");
+        Media media17 = new Media("video2", new Contenido(), MediaType.VIDEO, "finolis@gmail.com");
+        assertSame(media12,Media.getListaMedia().get(0));
+        assertSame(media13,Media.getListaMedia().get(1));
+        assertSame(media14,Media.getListaMedia().get(2));
+        assertSame(media15,Media.getListaMedia().get(3));
+        assertSame(media16,Media.getListaMedia().get(4));
+        assertSame(media17,Media.getListaMedia().get(5));
+        Media.eliminarTipoMedia(MediaType.IMAGEN);
+        assertSame(media13,Media.getListaMedia().get(0));
+        assertSame(media14,Media.getListaMedia().get(1));
+        assertSame(media16,Media.getListaMedia().get(2));
+        assertSame(media17,Media.getListaMedia().get(3));
     }
 }

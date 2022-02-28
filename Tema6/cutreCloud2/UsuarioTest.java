@@ -44,4 +44,66 @@ class UsuarioTest {
         assertEquals("pepon@gmail.com", usuario4.getEmail());
         assertEquals("Email no valido: pepon@gmail.com", usuarioMal2.getEmail());
     }
+
+    @Test
+    void eliminarUsuarioXEmail() {
+        Usuario usuario1 = new Usuario("joaquin@gmail.com", "xd");
+        Usuario usuario2 = new Usuario("sabrina@gmail.com", "xdd");
+        Usuario usuario3 = new Usuario("amaia@gmail.com", "xdddd");
+
+        Media media1 = new Media("NFT Willyrex", new Contenido(), MediaType.IMAGEN, "joaquin@gmail.com");
+        Media media2 = new Media("Dibujito", new Contenido(), MediaType.AUDIO, "sabrina@gmail.com");
+        Media media3 = new Media("canta", new Contenido(), MediaType.VIDEO, "amaia@gmail.com");
+        Media media4 = new Media("NFT Willyrex 2", new Contenido(), MediaType.VIDEO, "joaquin@gmail.com");
+        Media media5 = new Media("eee", new Contenido(), MediaType.VIDEO, "joaquin@gmail.com");
+        Media media6 = new Media("aaaa", new Contenido(), MediaType.AUDIO, "amaia@gmail.com");
+
+        assertSame(usuario1,Usuario.getListaUsuarios().get(0));
+        assertSame(usuario2,Usuario.getListaUsuarios().get(1));
+        assertSame(usuario3,Usuario.getListaUsuarios().get(2));
+        assertSame(media1, Media.getListaMedia().get(0));
+        assertSame(media2, Media.getListaMedia().get(1));
+        assertSame(media3, Media.getListaMedia().get(2));
+        assertSame(media4, Media.getListaMedia().get(3));
+        assertSame(media5, Media.getListaMedia().get(4));
+        assertSame(media6, Media.getListaMedia().get(5));
+        Usuario.eliminarUsuarioXEmail("joaquin@gmail.com");
+        assertEquals(2, Usuario.getListaUsuarios().size());
+        assertSame(usuario2, Usuario.getListaUsuarios().get(0));
+        assertSame(usuario3,Usuario.getListaUsuarios().get(1));
+        assertEquals(3, Media.getListaMedia().size());
+        assertSame(media2, Media.getListaMedia().get(0));
+        assertSame(media3, Media.getListaMedia().get(1));
+        assertSame(media6, Media.getListaMedia().get(2));
+    }
+
+    @Test
+    void eliminarUsuarioXDominio() {
+        Usuario usuario1 = new Usuario("joaquin@gmail.com", "xd");
+        Usuario usuario2 = new Usuario("sabrina@hotmail.com", "xdd");
+        Usuario usuario3 = new Usuario("amaia@gmail.es", "xdddd");
+        Usuario usuario4 = new Usuario("sabrina@gmail.es", "xdd");
+        Usuario usuario5 = new Usuario("ruben@gmail.es", "xdddd");
+
+        Media media1 = new Media("NFT Willyrex", new Contenido(), MediaType.IMAGEN, "joaquin@gmail.com");
+        Media media2 = new Media("Dibujito", new Contenido(), MediaType.AUDIO, "sabrina@hotmail.com");
+        Media media3 = new Media("canta", new Contenido(), MediaType.VIDEO, "amaia@gmail.es");
+        Media media4 = new Media("NFT Willyrex 2", new Contenido(), MediaType.VIDEO, "sabrina@gmail.es");
+        Media media5 = new Media("eee", new Contenido(), MediaType.VIDEO, "ruben@gmail.es");
+        Media media6 = new Media("aaaa", new Contenido(), MediaType.AUDIO, "amaia@gmail.es");
+
+        assertSame(usuario1,Usuario.getListaUsuarios().get(0));
+        assertSame(usuario2,Usuario.getListaUsuarios().get(1));
+        assertSame(usuario3,Usuario.getListaUsuarios().get(2));
+        assertSame(media1, Media.getListaMedia().get(0));
+        assertSame(media2, Media.getListaMedia().get(1));
+        assertSame(media3, Media.getListaMedia().get(2));
+        assertSame(media4, Media.getListaMedia().get(3));
+        assertSame(media5, Media.getListaMedia().get(4));
+        assertSame(media6, Media.getListaMedia().get(5));
+
+        Usuario.eliminarUsuarioXDominio("@gmail.es");
+        assertEquals(2,Usuario.getListaUsuarios().size());
+        assertEquals(2,Media.getListaMedia().size());
+    }
 }
