@@ -28,10 +28,20 @@ public class ClubDemo
      */
     public void demo()
     {
-        club.join(new Membership("David", 2, 2004));
-        club.join(new Membership("Michael", 1, 2004));
-        System.out.println("The club has " +
-                club.numberOfMembers() +
-                " members.");
+        try {
+            club.join(new Membership("David", 13, 2004));
+            club.join(new Membership("Michael", 1, 2004));
+            System.out.println("The club has " +
+                    club.numberOfMembers() +
+                    " members.");
+        }
+        catch (IllegalArgumentException excepcion) {
+            System.out.println("Se ha encontrado un error de >:( ARGUMENTOS ILEGALES >:(\n" + excepcion.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+        ClubDemo test = new ClubDemo();
+        test.demo();
     }
 }
