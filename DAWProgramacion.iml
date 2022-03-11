@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Tema 1" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tema 2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Thinking in Java" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/UsuariosCutreCloud" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

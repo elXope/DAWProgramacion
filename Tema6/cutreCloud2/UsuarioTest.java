@@ -106,4 +106,15 @@ class UsuarioTest {
         assertEquals(2,Usuario.getListaUsuarios().size());
         assertEquals(2,Media.getListaMedia().size());
     }
+
+    public static void main(String[] args) {
+        Usuario pepe = new Usuario("pepe@gmail.com", "Bustamante007");
+        Usuario matilde = new Usuario("matilde@gmail.com", "Bustamante007");
+        Usuario fran = new Usuario("fran@gmail.com", "Bustamante007");
+        pepe.writeXML();
+        matilde.writeXML();
+        fran.writeXML();
+
+        Usuario.loadXML();
+    }
 }
