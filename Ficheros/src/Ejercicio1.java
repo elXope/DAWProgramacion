@@ -11,8 +11,8 @@ public class Ejercicio1 {
         imprimirDirectorio(actualFile);
 
         while(true) {
-            opcion = pideOpcion(-2);
-            if (opcion == -2) {
+            opcion = pideOpcion(-1101);
+            if (opcion == -1101) {
                 continue;
             }
             if (opcion != -1) {
@@ -43,7 +43,7 @@ public class Ejercicio1 {
     }
 
     private static void imprimirDirectorio(File actualFile) {
-        System.out.println("Directorio: " + actualFile.getName());
+        System.out.println("Directorio: " + actualFile.getPath());
     }
 
     private static File nuevoDirectorio(int opcion) {
