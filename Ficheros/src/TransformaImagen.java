@@ -36,6 +36,8 @@ public class TransformaImagen {
                 imgOut.write(255 - out);
             }
         }
+        imgIn.close();
+        imgOut.close();
     }
 
     public void transformaOscuro() throws IOException {
@@ -53,6 +55,8 @@ public class TransformaImagen {
                 imgOut.write(out/2);
             }
         }
+        imgIn.close();
+        imgOut.close();
     }
 
 
@@ -79,5 +83,7 @@ public class TransformaImagen {
                 imgOut.write((r+g+b)/3);
             }
         }
+        imgIn.close();
+        imgOut.close();
     }
 }
