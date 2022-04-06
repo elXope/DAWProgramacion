@@ -3,9 +3,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-// Falta controlar algunes exceptions i quan entres 0 i no hi ha directorio padre
-
-public class Ejercicio1 {
+public class Ejercicio2 {
     public static void main(String[] args) {
         File actualFile = File.listRoots()[0];
         int opcion = 0;
