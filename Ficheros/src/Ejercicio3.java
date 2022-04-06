@@ -6,5 +6,7 @@ public class Ejercicio3 {
         File img = new File("./Ficheros/penyagolosa.bmp");
         TransformaImagen imgTrans = new TransformaImagen(img);
         imgTrans.transformaNegativo();
+        imgTrans.transformaOscuro();
+        imgTrans.transformaBlancoNegro();
     }
 }

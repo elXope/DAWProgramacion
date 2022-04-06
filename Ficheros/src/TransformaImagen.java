@@ -33,22 +33,51 @@ public class TransformaImagen {
             if (out == -1) {
                 break;
             } else {
-                imgOut.write(out);
+                imgOut.write(255 - out);
             }
         }
     }
 
     public void transformaOscuro() throws IOException {
         // Transformar a una imagen más oscura y guardar como *_o.bmp
+        FileInputStream imgIn = new FileInputStream(f);
+        FileOutputStream imgOut = new FileOutputStream(f.getPath().substring(0, f.getPath().length() - 4) + "_o.bmp");
+        for (int i = 0; i < 54; i++) {
+            imgOut.write(imgIn.read());
+        }
+        while (true) {
+            int out = imgIn.read();
+            if (out == -1) {
+                break;
+            } else {
+                imgOut.write(out/2);
+            }
+        }
     }
 
 
     public void transformaBlancoNegro() throws IOException {
         // Transformar a una imagen en blanco y negro y guardar como *_bn.bmp
-    }
+        FileInputStream imgIn = new FileInputStream(f);
+        FileOutputStream imgOut = new FileOutputStream(f.getPath().substring(0, f.getPath().length() - 4) + "_bn.bmp");
+        for (int i = 0; i < 54; i++) {
+            imgOut.write(imgIn.read());
+        }
 
-    private String getNombreSinExtension() {
-        //Devuelve el nombre del archivo f sin extensión
-        return null;
+        int r;
+        int g;
+        int b;
+        while (true) {
+            r = imgIn.read();
+            if (r == -1) {
+                break;
+            } else {
+                g = imgIn.read();
+                b = imgIn.read();
+                imgOut.write((r+g+b)/3);
+                imgOut.write((r+g+b)/3);
+                imgOut.write((r+g+b)/3);
+            }
+        }
     }
 }
