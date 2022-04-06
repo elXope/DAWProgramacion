@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.util.Locale;
 
 public class Ejercicio2 {
     public static void main(String[] args) {
@@ -42,24 +44,46 @@ public class Ejercicio2 {
     private static void imprimirDirectorio(File actualFile) {
         System.out.println("======================================");
         System.out.println("Directorio: " + actualFile.getPath());
+        DateFormat formatter = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.getDefault());
 
         if (actualFile.getParent() != null) {
             System.out.println(0 + ".-" + actualFile.getParent() + " <Parent>");
         }
 
+        String flags;
         for (int i = 0; i < actualFile.list().length; i ++) {
             if (!actualFile.listFiles()[i].isHidden()) {
-                if (actualFile.listFiles()[i].isFile()) {
-                    System.out.println((i+1) + ".-" + actualFile.listFiles()[i].getName() + " " + actualFile.listFiles()[i].getTotalSpace());
-                }
-                else if (actualFile.listFiles()[i].isDirectory()) {
-                    System.out.println((i+1) + ".-" + actualFile.listFiles()[i].getName() + " <Directorio>");
-                }
+                flags = getFlags(actualFile.listFiles()[i]);
+                System.out.println((i+1) + ".-\t" + flags + "\t" + actualFile.listFiles()[i].getTotalSpace() + "\t " + formatter.format(actualFile.listFiles()[i].lastModified()) + "\t" + actualFile.listFiles()[i].getName());
             }
         }
     }
 
-    private static File nuevoDirectorio(int opcion) {
-        return File.listRoots()[0];
+    private static String getFlags(File file) {
+        String flags;
+        if(file.isDirectory()){
+            flags = "d";
+        }else{
+            flags = "-";
+        }
+
+        if(file.canRead()){
+            flags += "r";
+        }else{
+            flags += "-";
+        }
+
+        if(file.canWrite()){
+            flags += "w";
+        }else{
+            flags += "-";
+        }
+
+        if(file.canExecute()){
+            flags += "x";
+        }else{
+            flags += "-";
+        }
+        return flags;
     }
 }

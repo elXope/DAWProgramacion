@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-// Falta controlar algunes exceptions i quan entres 0 i no hi ha directorio padre
+// Falta controlar algunes exceptions i quan entres 0 i no hi ha directorio padre. Sobra el ultim metode.
 
 public class Ejercicio1 {
     public static void main(String[] args) {
