@@ -5,24 +5,33 @@ import java.io.IOException;
 
 public class ContarPalabra {
     public static void main(String[] args) throws IOException {
-        FileReader input = new FileReader("./Ficheros/f2.txt");
+        FileReader input = new FileReader("./Ficheros/fsplit.txt");
         BufferedReader lector = new BufferedReader(input);
 
         String linia;
-        int cont;
+        String[] liniaPartida;
+        String objectiu = "ff";
+        int cont = 0;
         while ((linia = lector.readLine()) != null) {
-            cont = cuentaPalabras(linia);
-        }
-    }
-
-    public static int cuentaPalabras(String linia) {
-        boolean esPalabra = false;
-        char car;
-
-        for (int i = 0; i < linia.length(); i++) {
-            if (linia.charAt(i) != " ") {
-
+            liniaPartida = linia.split(" ");
+            for (int i = 0; i < liniaPartida.length; i++) {
+                for (int j = 0; j < liniaPartida[i].length(); j++) {
+                    if(!Character.isLetter(liniaPartida[i].charAt(j)) && !Character.isDigit(liniaPartida[i].charAt(j))) {
+                        liniaPartida[i] = liniaPartida[i].replace("" + liniaPartida[i].charAt(j), "");
+                    }
+                }
+                if (liniaPartida[i].equalsIgnoreCase(objectiu)) {
+                    cont++;
+                }
             }
         }
+        System.out.println("La palabra aparece " + cont + " veces.");
+    }
+
+    static void imprimirArrayString(String[] strings) {
+        for (String s : strings) {
+            System.out.print(s + " ");
+        }
+        System.out.println();
     }
 }
