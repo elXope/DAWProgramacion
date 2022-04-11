@@ -27,11 +27,4 @@ public class ContarPalabra {
         }
         System.out.println("La palabra aparece " + cont + " veces.");
     }
-
-    static void imprimirArrayString(String[] strings) {
-        for (String s : strings) {
-            System.out.print(s + " ");
-        }
-        System.out.println();
-    }
 }
