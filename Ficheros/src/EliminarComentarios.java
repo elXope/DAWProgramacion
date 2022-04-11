@@ -7,6 +7,7 @@ public class EliminarComentarios {
         BufferedReader lector = new BufferedReader(inputFile);
         FileWriter escritor = new FileWriter("./Ficheros/src/CribaErastotenesNocom.java");
         String linia;
+        String marcador = "_*_borrar_*_";
         boolean noComment = true;
 
         while ((linia = lector.readLine()) != null) {
@@ -14,17 +15,26 @@ public class EliminarComentarios {
                 if (noComment && linia.charAt(i) == '/') {
                     if (linia.charAt(i + 1) == '/') {
                         linia = linia.substring(0, i);
+                        int cont = 0;
+                        for (int j = 0; j < linia.length(); j++) {
+                            if (linia.charAt(j) == ' ') {
+                                cont++;
+                            }
+                        }
+                        if (linia.length() == cont) {
+                            linia = marcador;
+                        }
                         break;
                     } else if (linia.charAt(i + 1) == '*') {
                         noComment = false;
                     }
                 } else if (!noComment && linia.charAt(i) == '*' && linia.charAt(i + 1) == '/') {
-                    linia = "";
+                    linia = marcador;
                     noComment = true;
                     break;
                 }
             }
-            if (noComment) {
+            if (noComment && !linia.equals(marcador)) {
                 escritor.write(linia + System.lineSeparator());
             }
         }
