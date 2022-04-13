@@ -9,14 +9,14 @@ public class ProcesadorCodigo {
         return lineas[0];
     }
 
-    public String eliminaComBloque(String linea) {
-        String[] lineas;
-        if (!esComentario) {
-            lineas = linea.split("/*");
-            if (lineas.length > 2) {
-
-            }
-        }
-    }
+//    public String eliminaComBloque(String linea) {
+//        String[] lineas;
+//        if (!esComentario) {
+//            lineas = linea.split("/*");
+//            if (lineas.length > 2) {
+//
+//            }
+//        }
+//    }
 
 }
