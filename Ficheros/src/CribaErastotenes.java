@@ -5,18 +5,24 @@
  */
 public class CribaErastotenes {
 
-    private int nMax; //Comentario
+
+
+
+    private int      nMax; //Comentario
     private int dim;
-    private boolean[] esPrimo;
+    private   boolean[] esPrimo;
     //Comentario
     /**
      * Constructor de la clase CribaErastotenes.
      * @param nMax Número máximo hasta el que buscar primos.
      */
     public CribaErastotenes(int nMax) {
+
         // Comentarioooo
         this.nMax = nMax;
         this.dim = nMax + 1;
+
+
         this.inicializaVectorBoolean();
     }
 
@@ -42,13 +48,15 @@ public class CribaErastotenes {
      * número especificado en el constructor o en el setter.
      * @return vector de números primos.
      */
-    public int[] vectorPrimos() {
+    public int[]      vectorPrimos() {
         //Comentario
-        this.ejecutaCribaErastotenes();
-        return this.generaVectorPrimos(); //Comentario
+        this.ejecutaCribaErastotenes()     ;
+        return this.generaVectorPrimos();     //Comentario
     }
 
     private void ejecutaCribaErastotenes() {
+
+
         for (int i = 2; i <= Math.sqrt(this.nMax); i++) {
             if (this.esPrimo[i]) {
                 for (int j = 2 * i; j < this.dim; j += i) {
@@ -59,7 +67,10 @@ public class CribaErastotenes {
     }
 
     private int[] generaVectorPrimos() {
-        int[] vectorPrimos = new int[this.cuentaNPrimos()];
+
+        int[] vectorPrimos =       new int[this.cuentaNPrimos()];
+
+
         int j = 0;
         for (int i = 0; i < this.dim; i++) {
             if (this.esPrimo[i]) {
@@ -71,12 +82,12 @@ public class CribaErastotenes {
 
     private int cuentaNPrimos() {
         int cuenta = 0;
-        for (int i = 2; i < this.dim; i++) {
+        for (int   i = 2; i <     this.dim; i++) {
             if (this.esPrimo[i]) {
-                cuenta++;
+                         cuenta++;
             }
         }
-        return cuenta;
-    }
+              return cuenta;
+       }
 
 }

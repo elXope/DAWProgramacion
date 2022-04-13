@@ -34,7 +34,7 @@ public class EliminarComentarios {
                     break;
                 }
             }
-            if (noComment && !linia.equals(marcador)) {
+            if (noComment && !linia.equals(marcador)) { //&& !linia.replace(" ", "").equals("")) {
                 escritor.write(linia + System.lineSeparator());
             }
         }
