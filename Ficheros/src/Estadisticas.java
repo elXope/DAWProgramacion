@@ -11,6 +11,8 @@ public class Estadisticas {
         System.out.println("El fichero tiene un " + calculaPorcConsonantes(fichero) + "% de consonantes.");
         System.out.println("El fichero tiene un " + calculaPorcEspacios(fichero) + "% de espacios.");
         System.out.println("El fichero tiene un " + calculaPorcTabuladores(fichero) + "% de tabuladores.");
+
+        calculaTot(fichero);
     }
 
     public static int cuentaLetras(File f) throws IOException {
@@ -116,17 +118,56 @@ public class Estadisticas {
         int input;
         while ((input = fileReader.read()) != -1) {
             nCaracteres++;
-            if ((char)input == ' ') {
-                nEspais++;
-                if (nEspais == 4) {
-                    nTab++;
-                    nEspais = 0;
-                }
-            } else if (nEspais != 0){
-                nEspais = 0;
+            if ((char)input == '\t') {
+                nTab++;
             }
         }
         fileReader.close();
         return ((double)nTab/(double)nCaracteres)*100;
+    }
+
+    public static void calculaTot(File f) throws IOException {
+        FileReader fileReader = new FileReader(f);
+        BufferedReader lector = new BufferedReader(fileReader);
+        String linia;
+        String[] paraules;
+        int nLinies = 0;
+        int nEspais = 0;
+        int nCaracters = 0;
+        int nLetras = 0;
+        int nVocales = 0;
+        int nTabs = 0;
+        int nPalabras = 0;
+
+        while ((linia = lector.readLine()) != null) {
+            nLinies++;
+            nCaracters += linia.length() + 1;
+            for (int i = 0; i < linia.length(); i++) {
+                if (linia.charAt(i) == ' ') {
+                    nEspais++;
+                } else if (Character.isLetter(linia.charAt(i))) {
+                    nLetras++;
+                    if (isVowel(linia.charAt(i))) {
+                        nVocales++;
+                    }
+                } else if (linia.charAt(i) == '\t') {
+                    nTabs++;
+                }
+            }
+            for (String palabra : linia.split(" ")) {
+                if (!palabra.equals("")) {
+                    nPalabras++;
+                }
+            }
+        }
+
+        System.out.println("El texto tiene:\n" +
+                nLetras + " letras\n" +
+                nPalabras + " palabras\n" +
+                nLinies + " linias\n" +
+                ((double)nVocales/(double)nCaracters)*100 + "% de vocales\n" +
+                ((double)(nLetras - nVocales)/(double)nCaracters)*100 + "% de consonantes\n" +
+                ((double)nEspais/(double)nCaracters)*100 + "% de espacios\n" +
+                ((double)nTabs/(double)nCaracters)*100 + "% de tabuladores\n");
     }
 }
