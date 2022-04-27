@@ -160,7 +160,7 @@ public class Estadisticas {
                 }
             }
         }
-
+        nCaracters--; // La ultima linia no te caracter de salt de linia
         System.out.println("El texto tiene:\n" +
                 nLetras + " letras\n" +
                 nPalabras + " palabras\n" +
