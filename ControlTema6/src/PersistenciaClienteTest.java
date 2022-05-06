@@ -39,15 +39,27 @@ public class PersistenciaClienteTest {
 //            e.printStackTrace();
 //        }
 
+//        try {
+//            PersistenciaCliente.writeJSON(clientes);
+//            ArrayList<Cliente> clientesRecuperado = PersistenciaCliente.readJSON();
+//            for (int i = 0; i < clientesRecuperado.size(); i++) {
+//                System.out.println(clientesRecuperado.get(i));
+//                System.out.println(clientes.get(i));
+//                System.out.println("==============");
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         try {
-            PersistenciaCliente.writeJSON(clientes);
-            ArrayList<Cliente> clientesRecuperado = PersistenciaCliente.readJSON();
+            PersistenciaCliente.writeSeri(clientes);
+            ArrayList<Cliente> clientesRecuperado = PersistenciaCliente.readSeri();
             for (int i = 0; i < clientesRecuperado.size(); i++) {
                 System.out.println(clientesRecuperado.get(i));
                 System.out.println(clientes.get(i));
                 System.out.println("==============");
             }
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

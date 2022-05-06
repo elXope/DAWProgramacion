@@ -144,4 +144,26 @@ public class PersistenciaCliente {
 
         return gson.fromJson(elJson, tipoListaClientes);
     }
+
+    public static void writeSeri(ArrayList<Cliente> clientes) throws IOException {
+        ObjectOutputStream f = new ObjectOutputStream(new FileOutputStream("./ClientesSeri.obj"));
+        for (Cliente cliente : clientes) {
+            f.writeObject(cliente);
+        }
+        f.close();
+    }
+
+    public static ArrayList<Cliente> readSeri() throws IOException, ClassNotFoundException {
+        ObjectInputStream f = new ObjectInputStream(new FileInputStream("./ClientesSeri.obj"));
+        ArrayList<Cliente> clientes = new ArrayList<>();
+
+        try {
+            while(true) {
+                clientes.add((Cliente) f.readObject());
+            }
+        } catch (EOFException eof) {
+            f.close();
+        }
+        return clientes;
+    }
 }
